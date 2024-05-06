@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit User
+{% endblock %}
+
+{% block body %}
+
+	<section class='backModifier'>
+		<div class='container-md'>
+			<div class='row'>
+                <div class='col-md-6'></div>
+				<div class='col-md-6 registerForm p-2 pt-4 my-5 text-white'>
+					<h1 class='text-center'>Modifier Votre Profile</h1>
+					{{ include('crud_user/_form.html.twig', {'button_label': 'Modifier'}) }}
+				
+				</div>
+
+				
+			</div>
+		</div>
+	</section>
+	{% block script %}
+		 <script>
+	document.addEventListener('DOMContentLoaded', function() {
+	    var genreField = document.getElementById('genre-field');
+	    genreField.addEventListener('focus', function() {
+	        genreField.parentNode.classList.add('focus-style');
+	    });
+	    genreField.addEventListener('blur', function() {
+	        genreField.parentNode.classList.remove('focus-style');
+	    });
+	});
+	</script>
+	{% endblock %}
+{% endblock %}

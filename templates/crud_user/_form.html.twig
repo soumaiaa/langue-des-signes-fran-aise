@@ -1,0 +1,22 @@
+{{ form_start(form) }}
+    
+
+				
+			<label class='label' for="inputNom">Nom</label>
+			{{ form_row(form.nom, {label: ' '}) }}
+			<label class='label' for="inputPrenom">Prénom</label>
+			{{ form_row(form.prenom, {label: ' '})  }}
+			<label class='label' for="inputGenre">Genre</label>
+			{{ form_row(form.genre, {label: ' '}) }}
+			<label class='label' for="inputEmail">Email</label>
+			{{ form_row(form.email, {label: ' '}) }}
+
+			<label class='label' for="inputPassword">Mot de passe</label>
+			{{ form_row(form.password, {label: ' '}) }}
+
+					<div class='text-center my-4'>
+					   <button class="btn">{{ button_label|default('Save') }}</button>
+					</div>
+					
+ 
+{{ form_end(form) }}

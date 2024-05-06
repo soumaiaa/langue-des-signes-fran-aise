@@ -1,17 +1,198 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="UTF-8">
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text><text y=%221.3em%22 x=%220.2em%22 font-size=%2276%22 fill=%22%23fff%22>sf</text></svg>">
-        {% block stylesheets %}
-        {% endblock %}
+	<head>
+		<meta charset="UTF-8">
+		<title>
+			{% block title %}Langue Des Signes Française
+			{% endblock %}
+		</title>
+		<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text><text y=%221.3em%22 x=%220.2em%22 font-size=%2276%22 fill=%22%23fff%22>sf</text></svg>">
 
-        {% block javascripts %}
-            {% block importmap %}{{ importmap('app') }}{% endblock %}
-        {% endblock %}
-    </head>
-    <body>
-        {% block body %}{% endblock %}
-    </body>
+		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+		<link href="/assets/css/home.css" rel="stylesheet">
+		<link href="/assets/css/user.css" rel="stylesheet"> 
+		<link href="/assets/css/index.css" rel="stylesheet">
+		<link href="/assets/css/cours.css" rel="stylesheet"> 
+		<link href="/assets/css/quiz.css" rel="stylesheet"> 
+		{% block stylesheets %}{% endblock %} 
+	
+		{% block javascripts %}
+			{% block importmap %}{% endblock %}
+		{% endblock %}
+	</head>
+	<body>
+
+		<header class="backgroundHeader">
+			<div class='backTransparent'>
+				<div class='row text-center'>
+					<div class='col-md-6'>
+						<a href="{{ path('app_home')}}">
+							<img class="logo w-25 h-75 mt-5" src="{{ asset('assets/img/logoTransparent.png') }}">
+						</a>
+					</div>
+					<div class='col-md-6'>
+					</div>
+				</div>
+			</div>
+			<nav class="navbar navbar-expand-lg text-white">
+
+				<div class="container-fluid">
+
+					<button class="navbar-toggler " type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+						<span class="navbar-toggler-icon"></span>
+					</button>
+					<div class=" px-md-5 collapse navbar-collapse" id="navbarSupportedContent">
+						<ul class="navbar-nav me-auto mb-2 mb-lg-0">
+							<li class="nav-item px-md-2">
+								<a class="nav-link" href="{{ path('app_home') }}">Accueil</a>
+							</li>
+							<li class="nav-item px-md-2">
+								<a class="nav-link" href="{{ path('app_home') }}#decouvrir">Découvrir</a>
+							</li>
+							{% if app.user %}
+								<li class="nav-item px-md-2">
+									<a class="nav-link" href="#">Cours</a>
+								</li>
+								<li class="nav-item px-md-2">
+									<a class="nav-link " href="#">Quiz</a>
+								</li>
+							{% endif %}
+							<li class="nav-item px-md-2">
+								<a class="nav-link" href="{{ path('app_contact') }}">Contact</a>
+							</li>
+
+						</ul>
+
+					</div>
+
+
+					<div class="d-flex align-items-center">
+
+
+						<div class="dropdown a ">
+							<a class="a dropdown-toggle d-flex align-items-center hidden-arrow" href="#" role="button" aria-expanded="false" data-bs-toggle="dropdown">
+								{% if app.user %}
+									{% if app.user.genre %}
+										<img class=" imageAvatar" src="{{ asset('assets/img/' ~ app.user.genre.genre ~ '.avif') }}"/>
+								     {% endif %}
+								{% else %}
+									<img class="imageAvatar" src="{{ asset('assets/img/iconprofile.svg') }}"/>
+								{% endif %}
+
+							</a>
+							<ul class="dropdown-menu dropdown-menu-end ">
+								{% if app.user %}
+									<li>
+										<a class="dropdown-item a" href="{{ path('app_profile', {id : app.user.id})}}">Profile</a>
+									</li>
+									<li>
+										<a class="dropdown-item a" href="{{ path('app_crud_user_edit', {id : app.user.id})}}">Réglage</a>
+									</li>
+									<li>
+										<a class="dropdown-item a" href="{{ path('app_logout') }}">Déconnection</a>
+									</li>
+								{% else %}
+									<li>
+										<a class="dropdown-item a" href="{{ path('app_register') }}">Inscripion</a>
+									</li>
+									<li>
+										<a class="dropdown-item a" href="{{ path('app_login') }}">connection</a>
+									</li>
+								{% endif %}
+							</ul>
+						</div>
+
+					</div>
+
+				</div>
+
+			</nav>
+
+		</header>
+		{% block body %}{% endblock %}
+		<footer class='footerBack px-5 pt-5'>
+			<div class='row'>
+				<div class='col-md-4 text-center'>
+					<a class='' href="{{ path('app_home')}}">
+						<img class="logoFooter " src="{{ asset('assets/img/logoTransparent.png') }}">
+					</a>
+					<p class='m-0'>LA LANGUE DES SIGNES
+						<br>
+						FRANCAISE
+					</p>
+
+					<div class='row text-center divsocial pb-2 my-3'>
+					    <div class='col-2'></div>
+						<div class='col-2'>
+							<svg width="50" height="50" viewbox="0 0 67 77" fill="none" xmlns="http://www.w3.org/2000/svg">
+								<path d="M66.1223 38.5621C66.1223 17.3355 51.3316 0.137329 33.0764 0.137329C14.8212 0.137329 0.0305176 17.3355 0.0305176 38.5621C0.0305176 57.7404 12.1149 73.6371 27.913 76.5221V49.6696H19.5183V38.5621H27.913V30.0963C27.913 20.4668 32.8432 15.1478 40.3945 15.1478C44.0109 15.1478 47.7925 15.8977 47.7925 15.8977V25.3489H43.6245C39.5204 25.3489 38.2398 28.3114 38.2398 31.3497V38.5621H47.4047L45.939 49.6696H38.2398V76.5221C54.0379 73.6371 66.1223 57.7404 66.1223 38.5621Z" fill="#FF9901"/>
+							</svg>
+
+						</div>
+						<div class='col-2'>
+							<svg width="50" height="50" viewbox="0 0 76 77" fill="none" xmlns="http://www.w3.org/2000/svg">
+								<path d="M37.7065 29.2351C35.938 29.2358 34.2095 29.7698 32.7394 30.7695C31.2693 31.7692 30.1237 33.1898 29.4474 34.8517C28.7711 36.5136 28.5945 38.3421 28.9399 40.106C29.2853 41.87 30.1373 43.4902 31.388 44.7617C32.6387 46.0333 34.232 46.8991 35.9665 47.2497C37.701 47.6004 39.4988 47.4201 41.1326 46.7316C42.7663 46.0432 44.1627 44.8775 45.1451 43.382C46.1276 41.8865 46.6519 40.1283 46.6519 38.3297C46.6501 35.9176 45.707 33.6049 44.0297 31.8997C42.3524 30.1944 40.0781 29.236 37.7065 29.2351ZM58.6133 22.2446C58.1581 21.0712 57.4706 20.0056 56.5937 19.1137C55.7167 18.2217 54.6689 17.5226 53.5152 17.0596C49.9947 15.6462 41.6125 15.9633 37.7065 15.9633C33.8004 15.9633 25.4266 15.6342 21.896 17.0596C20.7423 17.5226 19.6945 18.2217 18.8176 19.1137C17.9406 20.0056 17.2532 21.0712 16.7979 22.2446C15.4099 25.8251 15.72 34.3587 15.72 38.328C15.72 42.2973 15.4099 50.8206 16.8047 54.4131C17.2599 55.5864 17.9473 56.6521 18.8243 57.544C19.7012 58.4359 20.749 59.1351 21.9027 59.5981C25.4232 61.0115 33.8054 60.6944 37.7132 60.6944C41.6209 60.6944 49.9914 61.0235 53.5219 59.5981C54.6756 59.1351 55.7234 58.4359 56.6004 57.544C57.4773 56.6521 58.1648 55.5864 58.62 54.4131C60.0198 50.8326 59.6979 42.299 59.6979 38.3297C59.6979 34.3604 60.0198 25.8387 58.62 22.2463L58.6133 22.2446ZM37.7065 52.3108C34.9876 52.3108 32.3298 51.4908 30.0692 49.9546C27.8085 48.4183 26.0466 46.2348 25.0061 43.68C23.9656 41.1253 23.6934 38.3142 24.2238 35.6021C24.7542 32.89 26.0635 30.3988 27.986 28.4435C29.9085 26.4882 32.358 25.1567 35.0246 24.6172C37.6912 24.0777 40.4552 24.3546 42.9671 25.4128C45.479 26.471 47.626 28.263 49.1365 30.5622C50.647 32.8614 51.4532 35.5645 51.4532 38.3297C51.4554 40.1664 51.1014 41.9854 50.4113 43.6827C49.7212 45.38 48.7088 46.9221 47.4318 48.2209C46.1549 49.5196 44.6386 50.5493 42.9697 51.2511C41.3009 51.953 39.5123 52.3131 37.7065 52.3108ZM52.0199 27.0254C51.3852 27.0258 50.7646 26.8347 50.2367 26.4763C49.7089 26.1179 49.2973 25.6083 49.0542 25.0121C48.8111 24.4158 48.7473 23.7596 48.8709 23.1264C48.9946 22.4933 49.3 21.9116 49.7487 21.4551C50.1974 20.9985 50.7691 20.6875 51.3916 20.5615C52.014 20.4354 52.6593 20.4999 53.2457 20.7469C53.8321 20.9938 54.3333 21.4121 54.686 21.9488C55.0387 22.4855 55.2269 23.1165 55.2269 23.762C55.2286 24.1907 55.1472 24.6155 54.9872 25.0121C54.8271 25.4086 54.5917 25.7692 54.2944 26.073C53.9971 26.3768 53.6437 26.618 53.2545 26.7826C52.8653 26.9472 52.448 27.032 52.0266 27.0323L52.0199 27.0254ZM67.2117 0.137329H8.20119C6.06702 0.137329 4.02026 0.999578 2.51118 2.53439C1.00209 4.0692 0.154297 6.15085 0.154297 8.32141L0.154297 68.338C0.154297 70.5085 1.00209 72.5902 2.51118 74.125C4.02026 75.6598 6.06702 76.5221 8.20119 76.5221H67.2117C69.3459 76.5221 71.3926 75.6598 72.9017 74.125C74.4108 72.5902 75.2586 70.5085 75.2586 68.338V8.32141C75.2586 6.15085 74.4108 4.0692 72.9017 2.53439C71.3926 0.999578 69.3459 0.137329 67.2117 0.137329ZM64.3417 49.5828C64.1254 53.9528 63.1447 57.8248 60.0081 61.0064C56.8715 64.188 53.0676 65.2059 48.776 65.4139C44.3485 65.6679 31.0745 65.6679 26.647 65.4139C22.3503 65.1939 18.5565 64.1948 15.4149 61.0064C12.2732 57.818 11.2858 53.9442 11.0813 49.5828C10.8315 45.0781 10.8315 31.5761 11.0813 27.0766C11.2976 22.7066 12.2665 18.8345 15.4149 15.653C18.5632 12.4714 22.3671 11.4655 26.647 11.2574C31.0745 11.0034 44.3485 11.0034 48.776 11.2574C53.0727 11.4774 56.8782 12.4765 60.0081 15.6649C63.138 18.8533 64.1371 22.7271 64.3417 27.097C64.5914 31.5846 64.5914 45.0747 64.3417 49.5828Z" fill="#FF9901"/>
+							</svg>
+
+						</div>
+						<div class='col-2'>
+							<svg width="50" height="50" viewbox="0 0 73 77" fill="none" xmlns="http://www.w3.org/2000/svg">
+								<path d="M30.3537 29.1397L45.675 38.3638L30.3537 47.5879V29.1397ZM72.3907 8.32141V68.338C72.3907 72.8563 68.9305 76.5221 64.6656 76.5221H8.01554C3.75069 76.5221 0.290527 72.8563 0.290527 68.338V8.32141C0.290527 3.80311 3.75069 0.137329 8.01554 0.137329H64.6656C68.9305 0.137329 72.3907 3.80311 72.3907 8.32141ZM65.6313 38.3808C65.6313 38.3808 65.6313 28.2189 64.4081 23.3426C63.7322 20.6487 61.7527 18.5345 59.226 17.8183C54.6714 16.5055 36.3406 16.5055 36.3406 16.5055C36.3406 16.5055 18.0098 16.5055 13.4552 17.8183C10.9285 18.5345 8.94898 20.6487 8.27304 23.3426C7.04991 28.2019 7.04991 38.3808 7.04991 38.3808C7.04991 38.3808 7.04991 48.5427 8.27304 53.4191C8.94898 56.113 10.9285 58.142 13.4552 58.8581C18.0098 60.1539 36.3406 60.1539 36.3406 60.1539C36.3406 60.1539 54.6714 60.1539 59.226 58.841C61.7527 58.1249 63.7322 56.096 64.4081 53.402C65.6313 48.5427 65.6313 38.3808 65.6313 38.3808Z" fill="#FF9901"/>
+							</svg>
+
+						</div>
+						<div class='col-2'>
+							<svg width="50" height="50" viewbox="0 0 63 78" fill="none" xmlns="http://www.w3.org/2000/svg">
+								<path d="M62.5229 31.8531C56.4198 31.869 50.4665 29.7945 45.5038 25.9227V52.9259C45.5021 57.9272 44.0996 62.8087 41.4838 66.9177C38.868 71.0268 35.1635 74.1675 30.8658 75.9199C26.568 77.6723 21.8819 77.9528 17.4339 76.724C12.9859 75.4953 8.98815 72.8157 5.97512 69.0437C2.96209 65.2717 1.07743 60.5869 0.573153 55.6159C0.0688732 50.645 0.969008 45.6246 3.1532 41.2263C5.33738 36.8279 8.70152 33.2612 12.7958 31.003C16.89 28.7448 21.5192 27.9027 26.0644 28.5895V42.1711C23.9845 41.4581 21.7511 41.4796 19.6831 42.2325C17.6151 42.9855 15.8182 44.4314 14.5491 46.3637C13.2801 48.2961 12.6036 50.6162 12.6165 52.9925C12.6293 55.3689 13.3308 57.6801 14.6206 59.5961C15.9105 61.512 17.7229 62.9347 19.7989 63.6611C21.8749 64.3874 24.1084 64.3802 26.1804 63.6405C28.2524 62.9008 30.057 61.4664 31.3365 59.5422C32.6159 57.618 33.3048 55.3023 33.3048 52.9259V0.137329H45.5038C45.4953 1.26015 45.5817 2.38145 45.7617 3.48704C46.1856 5.9551 47.067 8.30296 48.352 10.387C49.6369 12.4711 51.2985 14.2475 53.235 15.6076C55.99 17.5931 59.2201 18.6514 62.5229 18.6506V31.8531Z" fill="#FF9901"/>
+							</svg>
+
+						</div>
+						<div class='col-2'></div>
+					</div>
+
+
+				</div>
+				<div class='col-md-4 mt-3'>
+					<h4>Quick Links</h4>
+					<p class='mt-4'><span class='footerflech'> > </span> Accueil</p>
+					<p><span class='footerflech'> > </span> Découvrir</p>
+					<p><span class='footerflech'> > </span> Contact</p>
+					<p><span class='footerflech'> > </span> Politique de confidentialité</p>
+				</div>
+				<div class='col-md-4 mt-3'>
+					<h4>Information</h4>
+					<div class='d-flex align-items-center'>
+						<a class='text-center' href="{{ path('app_home')}}">
+							<img class="" src="{{ asset('assets/img/map.png') }}">
+						</a>
+						<p class='m-3'>Saint-étienne</p>
+					</div>
+					<div class='d-flex align-items-center'>
+						<a class='text-center' href="{{ path('app_home')}}">
+							<img class="" src="{{ asset('assets/img/phone.png') }}">
+						</a>
+						<p class='m-3'>+33745230807</p>
+					</div>
+					<div class='d-flex align-items-center'>
+						<a class='text-center' href="{{ path('app_home')}}">
+							<img class=" " src="{{ asset('assets/img/email.png') }}">
+						</a>
+						<p class='m-3'>alouisoumayaa@gmail.com</p>
+					</div>
+				</div>
+			</div>
+			<hr class='mb-0 hrFooter'>
+			<p class='text-center pb-2 mb-0'>Copyright 2024 All RIght</p>
+		</footer>
+		 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/js/bootstrap.bundle.min.js"></script>
+
+		{% block script %}{% endblock %}
+
+	</body>
 </html>

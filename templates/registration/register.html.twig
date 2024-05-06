@@ -1,0 +1,71 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Register
+{% endblock %}
+{% block stylesheets %}
+<style>
+input[type=text],
+input[type=password],
+input[type=email],
+textarea.materialize-textarea {
+   
+	padding-left: 10px; 
+}
+
+.input-field {
+	padding-left: 10px; 
+}
+</style> 
+{% endblock %}
+{% block body %}
+	<section class='backRegister'>
+		<div class='container-md'>
+			<div class='row'>
+				<div class='col-md-6 registerForm p-2 my-3 text-white'>
+					<h1 class='text-center pt-3'>Créer Votre Compte</h1>
+					{{ form_errors(registrationForm) }}
+					{{ form_start(registrationForm) }}
+					
+					<label class='label pt-2' for="inputEmail">Nom</label>
+					{{ form_row(registrationForm.nom, {label: ' '}) }}
+					<label class='label pt-2' for="inputEmail">Prénom</label>
+					{{ form_row(registrationForm.prenom, {label: ' '})  }}
+					<label class='label pt-2' for="inputEmail">Genre</label>
+					{{ form_row(registrationForm.genre, {label: ' '}) }}
+					<label class='label pt-2' for="inputEmail">Email</label>
+					{{ form_row(registrationForm.email, {label: ' '}) }}
+					<label class='label pt-2' for="inputEmail">Mot de passe</label>
+					{{ form_row(registrationForm.plainPassword, {label: ' '}) }}
+
+					{# {{ form_row(registrationForm.agreeTerms) }} #}
+					<div class="checkbox pt-2">
+						<input type="checkbox" name="{{field_name(registrationForm.agreeTerms)}}" value="1" id="accept-terms" required/>
+						<label for="accept-terms">J'ai lu et j'accepte les
+							<a class='conditionUtilisation' href="#!" target="_blank">Conditions d'utilisation</a>
+						</label>
+					</div>
+					<div class='text-center'>
+						<button type="submit" class="btn my-4 w-50">Register</button>
+					</div>
+					{{ form_end(registrationForm) }}
+					
+				</div>
+
+				<div class='col-md-6'></div>
+			</div>
+		</div>
+	</section>
+	{% block script %}
+	<script>
+		document.addEventListener('DOMContentLoaded', function() {
+		    var genreField = document.getElementById('genre-field');
+		    genreField.addEventListener('focus', function() {
+		        genreField.parentNode.classList.add('focus-style');
+		    });
+		    genreField.addEventListener('blur', function() {
+		        genreField.parentNode.classList.remove('focus-style');
+		    });
+		});
+		</script>
+	{% endblock %}
+{% endblock %}
