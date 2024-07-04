@@ -4,9 +4,9 @@
 {% endblock %}
 
 {% block body %}
-	
-	<section class='backProfile'>
-        <h1 class='text-center py-4'>PROFILE</h1>
+
+	{# <section class='backProfile'>
+		<h1 class='text-center py-4'>PROFILE</h1>
 		<div class='row py-5 divProfile'>
 			<div class='col-md-6 text-center'>
 				{% if user.genre.genre %}
@@ -31,9 +31,9 @@
 							<image id="image0_102_3" width="80" height="80" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFoAAABaCAYAAAA4qEECAAAACXBIWXMAAAsTAAALEwEAmpwYAAAFgElEQVR4nO2c34tVVRTHPzNzSydnpix7iLCSQCsIegokH4qKySzIfr+llWPZHxD0DwRhjTWaDZT9DnqJyhztJzWVlqOWTBLoS5GWZVkkNkY1NzasgcvlrH3OPvfMvXefuz6w4XLv3mef9T3nrL322vtcMAzDMAzDMAzDMNqGM4BNwB9AtaBiJPBMgQKb0ArdwF8m9OxjQjcRcx1NohcYAX43H916TgfetsGwvUS28K5JIpvQTRLZhA5gLjCWIqbvdyPjnbw1ReQdcjE6TuiLgXXAa8A+4DfgH5n1/SDfvQCsBhYVcCfPkfodIXQPcDfwGTAd4D9d3Q+B24BKAyJ3hNDXA98WMMHYD1wlIm8PFLnUQvfOwpTZ3eGHcohcWqEXALsLFjlL0UQupdALgANtJnLphJ4LfJlBFBddbARuAJYA82T1ZDEwCDwFfF+gyCiJqONEyuYUQY4Aa+oiCF+kcq9cFN8xD2UQGbmw9W3dBY2Oa1MEcROL/hzH7QPeSBkgXTSSdXA+KWWzfBfd6scBjxgbpU4jx3/Cc/yvMz4lji4pUXKnR4Tt4gYaxYnzuqefW+kAPlGM/xEYKLCfPo/P/oCSc5FnWr12Fvpb7fHVvtxI9Ax5IoyK587M67OdG/pO6dNFKaXlJcVoN6on4cTfC0wAy3L2+aTS54uUmAnF6JuV+uvqHvfHAyKGGQaVPr8ics4BTlN+O6oYfZlSPykHMg6cHZjTTurzMBFzrqQoNaFPKkbPV+qfUOrvAc7KeE69yjFOESlzgM/FCJeLSOJPxWg34IUIXZW+tAtayzylvVupiZJNNUYsVOpoEYAL+0Ji7pmyPsN5LVHaumWx6LiuLj6+Qqm3O3AwdP7+LY/Qrs+rU85tuWcqHhUuxp2sM2JQqTuqGD2ccnyt3Yy/7sqRJXyVyLgrwYhHAmdqR1L8rRP7TY/Yt3smLD8rbR4kMsYTjNim1D0f+Fcx/P6UfuZLPiSp7XtKG3enHyvDFHyRYvhxz7RZW5U+Kj7Zxyql7X/ABUqbJB/vbo6oeEAx/JhnBrcyJeHvS5NWPBm5+5Q2DyfUdftGouIVxehRTxv3OH/hEfu5FLHXK+2ezbias7/BhYWWsE8x+qaUdsvkcdfE3iazzCRWKG1c8imJy+t88zVESNJAU/XkLmp51CP0zMwviYVKfedSkjivpo571SJKTilGD2Ro6/ztxx6hpwJzF27jo7aL1P3+qXyOEi1J1J+x/YDHX2vC9QcmibolJeo260SLtnFlccAxXBbuI2XGl8QlSp+/KPV7MoSNbc9exejlgcfpEZ9dmy95KHAw1C5MKdji2ZuRhyuBXfKoa3H400qfL1NiVnkigErOY3Z58tMVWRlJ6tMt/JaWCz3bB9bMQn9rlb6m5VxKzfuejFx/gf2cCfyk9BVd7iIPK5uwxas75Y2qO+gAemTwqiplpIBNi0nbaGfKZIy5i7wsTcldbM25r865i3caXMoqFW4F/KBHkKok7YcyRiMVGfg0n1z7tHSUyGnv8VVrymGJhW8ELpVQrk8+r5DftBCutuzMuHu/LemVXLLLYfwKPJZiTKjI1YLKN7FPq0cDXq5plcg7Yxe5y7MzqF7sLCIfTBkgQ8u0+ORo3UWWLVu1YmcReUzqLfWswoSUybJFF8MZBAx9gb0HuAV4N8dL9OMyGSldnNyo3x1LebTdloB7ZAF2QvLZbuD9W5bF9kgWbsizH49O/yucHfI2rDGLYpvITRDbRG4QE7oJmOtoAjYYliC8M4SRAiYsG0xNP92enUchU/ATMf/1QrOEnsroEnxiT5Vxylw0zwf4XU3sLS047+joE7GnxAUMZ0j8b5C6UyKytvnFSCDUx0b9lziGYRiGYRiGYdBS/ge61X+gUUrIMQAAAABJRU5ErkJggg=="/>
 						</defs>
 					</svg>
-					
+
 					{{ user.genre.genre }}
-                </h3>
+				</h3>
 			</div>
 		</div>
 		<hr class='hrProfile'>
@@ -56,5 +56,148 @@
 				{{ include('crud_user/_delete_form.html.twig') }}
 			</div>
 		</div>
-	</section>
+	</section> #}
+	<section class='backModifier'>
+	<div class='col-md-3'></div>
+	<div class='col-md-9'>
+		<div class="section">
+			<div class="container">
+				<div class="row full-height justify-content-center">
+					<div class="col-12 text-center align-self-center py-5">
+						<div class="section pb-5 pt-5 pt-sm-2 text-center text-white">
+							<h6 class="mb-0 pb-3  switch-tabs">
+								<span class="tab">Profile</span>
+								<span class="tab">Modifier</span>
+							</h6>
+							<input class="checkbox" type="checkbox" id="reg-log" name="reg-log"/>
+							<label for="reg-log"></label>
+							<div class="card-3d-wrap mx-auto">
+								<div class="card-3d-wrapper">
+									<div class="card-front">
+										<div class="center-wrap">
+											<div class="section">
+												<h4 class="mb-4 pb-3 h4">Profile</h4>
+												<div class="cardProfile">
+													<div class="image">
+														{% if user.genre.genre %}
+															{# <img class="w-75 avatarProfile" src="{{ asset('assets/img/' ~ user.genre.genre ~ '.avif') }}"/>
+																																												{% else %} #}
+															<img class="imageAvatar" src="{{ asset('assets/img/iconprofile.svg') }}"/>
+														{% endif %}
+													</div>
+													<div class="card-info">
+													    {% if user.genre.genre === Homme %}
+														<span>Mrs {{ user.nom|upper }}
+														
+															{{ user.prenom|capitalize }}</span>
+															{% else %}
+															<span>Mme {{ user.nom|upper }}
+														
+															{{ user.prenom|capitalize }}</span>
+															{% endif %}
+														<p>{{ user.email }}</p>
+													</div>
+													<a href="#" class="button">Modifier</a>
+												</div>
+
+											</div>
+										</div>
+									</div>
+									<div class="card-back">
+										<div class="center-wrap">
+											<div class="section text-center">
+												<h4 class="mb04 pb-3">Créer Votre Compte</h4>
+												{{ include('crud_user/_form.html.twig', {'button_label': 'Modifier'}) }}
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+    </section>
+	{% block script %}
+		 <script>
+document.addEventListener("DOMContentLoaded", function() {
+    const tabs = document.querySelectorAll(".switch-tabs .tab");
+    const checkbox = document.getElementById("reg-log");
+    const modifierButton = document.getElementById("modifier-button");
+
+    tabs.forEach(tab => {
+        tab.addEventListener("click", function() {
+            tabs.forEach(t => t.classList.remove("tab-active"));
+            this.classList.add("tab-active");
+
+            if (this.textContent.trim() === "Modifier") {
+                checkbox.checked = true;
+            } else {
+                checkbox.checked = false;
+            }
+
+            updateTabBackgrounds();
+        });
+    });
+
+    checkbox.addEventListener("change", function() {
+        updateTabBackgrounds();
+    });
+
+    if (checkbox.checked) {
+        tabs[1].classList.add("tab-active");
+    } else {
+        tabs[0].classList.add("tab-active");
+    }
+
+    updateTabBackgrounds();
+
+    function updateTabBackgrounds() {
+        if (checkbox.checked) {
+            tabs[1].style.backgroundColor = "#ff9901";
+            tabs[1].style.color = "#fff";
+            tabs[0].style.backgroundColor = "#242f40";
+            tabs[0].style.color = "#fff";
+        } else {
+            tabs[0].style.backgroundColor = "#ff9901";
+            tabs[0].style.color = "#fff";
+            tabs[1].style.backgroundColor = "#242f40";
+            tabs[1].style.color = "#fff";
+        }
+    }
+
+    modifierButton.addEventListener("click", function() {
+        checkbox.checked = true;
+        updateTabBackgrounds();
+    });
+
+    const togglePassword = document.getElementById("togglePassword");
+    const password = document.querySelector("#password");
+
+    togglePassword.addEventListener("change", function() {
+        const type = password.getAttribute("type") === "password" ? "text" : "password";
+        password.setAttribute("type", type);
+
+        // Toggle the visibility icons
+        const eye = togglePassword.nextElementSibling;
+        const eyeSlash = eye.nextElementSibling;
+        if (type === "password") {
+            eye.style.display = "block";
+            eyeSlash.style.display = "none";
+        } else {
+            eye.style.display = "none";
+            eyeSlash.style.display = "block";
+        }
+    });
+
+    // Initialize the visibility of the icons
+    const eye = togglePassword.nextElementSibling;
+    const eyeSlash = eye.nextElementSibling;
+    eye.style.display = "none";
+});
+
+							 </script>
+	{% endblock %}
 {% endblock %}

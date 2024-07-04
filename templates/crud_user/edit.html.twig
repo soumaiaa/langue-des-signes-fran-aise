@@ -4,32 +4,170 @@
 {% endblock %}
 
 {% block body %}
+	<section class='backModifier row'>
+		<div class='col-md-2'></div>
+		<div class='col-md-8'>
+			<div class="section">
+				<div class="container">
+					<div class="row full-height justify-content-center">
+						<div class="col-12 text-center align-self-center py-5">
+							<div class="section pb-5 pt-5 pt-sm-2 text-center text-white">
+								<h6 class="mb-0 pb-3  switch-tabs">
+									<span class="tab">Profile
+									</span>
+									<span class="tab">Modifier
 
-	<section class='backModifier'>
-		<div class='container-md'>
-			<div class='row'>
-                <div class='col-md-6'></div>
-				<div class='col-md-6 registerForm p-2 pt-4 my-5 text-white'>
-					<h1 class='text-center'>Modifier Votre Profile</h1>
-					{{ include('crud_user/_form.html.twig', {'button_label': 'Modifier'}) }}
-				
+									</span>
+								</h6>
+								<input class="checkbox" type="checkbox" id="reg-log" name="reg-log"/>
+								<label for="reg-log">
+									<i class="uil uil-sync icon-flip iconCrt"></i>
+								</label>
+								<div class="card-3d-wrap mx-auto">
+									<div class="card-3d-wrapper">
+										<div class="card-front">
+											<div class="center-wrap">
+												<div class="section">
+													<h4 class="mb-4 pb-3 h4">Profile</h4>
+													<div class="cardProfile">
+														{# <div class="image"> #}
+														{# {% if user.genre.genre %} #}
+
+														{# {% else %} #}
+															{% if user.photo is not null %}
+															<img class="imageProfile image" src="{{ asset('uploads/brochures/' ~ user.photo.url ~ '') }}"/>
+
+														{% else %}
+															<img class="imageProfile image" src="{{ asset('assets/img/' ~ user.genre.genre ~ '.avif') }}"/>
+														{% endif %}
+														{# </div> #}
+														<div class="card-info">
+															{% if user.genre.genre is same as('Homme') %}
+																<h3>Mrs
+																	{{ user.nom|upper }}
+																	{{ user.prenom|capitalize }}</h3>
+															{% else %}
+																<h3>Mme
+																	{{ user.nom|upper }}
+																	{{ user.prenom|capitalize }}</h3>
+															{% endif %}
+															<p>{{ user.email }}</p>
+
+														</div>
+														<div class="row ">
+															<div class="col-6">
+																<button id="modifier-button" class="button py-2 d-flex">
+																	<h6>Modifier</h6>
+																	<i class="uil uil-edit iconeButton"></i>
+																</button>
+															</div>
+															<div class='col-6'>
+																{{ include('crud_user/_delete_form.html.twig') }}
+															</div>
+														</div>
+
+
+													</div>
+
+												</div>
+											</div>
+										</div>
+										<div class="card-back" id="modifier-section">
+											<div class="center-wrap">
+												<div class="section text-center">
+													<h4 class="mb-4 pb-3">Modifier</h4>
+													{{ include('crud_user/_form.html.twig', {'button_label': 'Modifier'}) }}
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
 				</div>
-
-				
 			</div>
 		</div>
 	</section>
 	{% block script %}
 		 <script>
-	document.addEventListener('DOMContentLoaded', function() {
-	    var genreField = document.getElementById('genre-field');
-	    genreField.addEventListener('focus', function() {
-	        genreField.parentNode.classList.add('focus-style');
-	    });
-	    genreField.addEventListener('blur', function() {
-	        genreField.parentNode.classList.remove('focus-style');
-	    });
-	});
-	</script>
+					document.addEventListener("DOMContentLoaded", function() {
+    const tabs = document.querySelectorAll(".switch-tabs .tab");
+    const checkbox = document.getElementById("reg-log");
+    const modifierButton = document.getElementById("modifier-button");
+
+    tabs.forEach(tab => {
+        tab.addEventListener("click", function() {
+            tabs.forEach(t => t.classList.remove("tab-active"));
+            this.classList.add("tab-active");
+
+            if (this.textContent.trim() === "Modifier") {
+                checkbox.checked = true;
+            } else {
+                checkbox.checked = false;
+            }
+
+            updateTabBackgrounds();
+        });
+    });
+
+    checkbox.addEventListener("change", function() {
+        updateTabBackgrounds();
+    });
+
+    if (checkbox.checked) {
+        tabs[1].classList.add("tab-active");
+    } else {
+        tabs[0].classList.add("tab-active");
+    }
+
+    updateTabBackgrounds();
+
+    function updateTabBackgrounds() {
+        if (checkbox.checked) {
+            tabs[1].style.backgroundColor = "#ff9901";
+            tabs[1].style.color = "#fff";
+            tabs[0].style.backgroundColor = "#242f40";
+            tabs[0].style.color = "#fff";
+        } else {
+            tabs[0].style.backgroundColor = "#ff9901";
+            tabs[0].style.color = "#fff";
+            tabs[1].style.backgroundColor = "#242f40";
+            tabs[1].style.color = "#fff";
+        }
+    }
+
+    modifierButton.addEventListener("click", function() {
+        checkbox.checked = true;
+        updateTabBackgrounds();
+    });
+
+    const togglePassword = document.getElementById("togglePassword");
+    const password = document.querySelector("#password");
+
+    togglePassword.addEventListener("change", function() {
+        const type = password.getAttribute("type") === "password" ? "text" : "password";
+        password.setAttribute("type", type);
+
+        // Toggle the visibility icons
+        const eye = togglePassword.nextElementSibling;
+        const eyeSlash = eye.nextElementSibling;
+        if (type === "password") {
+            eye.style.display = "block";
+            eyeSlash.style.display = "none";
+        } else {
+            eye.style.display = "none";
+            eyeSlash.style.display = "block";
+        }
+    });
+
+    // Initialize the visibility of the icons
+    const eye = togglePassword.nextElementSibling;
+    const eyeSlash = eye.nextElementSibling;
+    eye.style.display = "none";
+});
+
+							
+							</script>
 	{% endblock %}
 {% endblock %}

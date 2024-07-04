@@ -6,6 +6,7 @@ use App\Entity\Genre;
 use App\Entity\User;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -20,21 +21,15 @@ class UserType extends AbstractType
             ->add('email')
             // ->add('roles')
             ->add('password', PasswordType::class, [
-                // instead of being set onto the object directly,
-                // this is read and encoded in the controller
                 'mapped' => false,
+                'required' => false,
                 'attr' => [
                     'autocomplete' => 'new-password',
-
                 ],
                 'constraints' => [
-                    new NotBlank([
-                        'message' => 'Please enter a password',
-                    ]),
                     new Length([
                         'min' => 6,
-                        'minMessage' => 'Your password should be at least {{ limit }} characters',
-                        // max length allowed by Symfony for security reasons
+                        'minMessage' => 'Votre mot de passe doit comporter au moins {{ limit }} caractères.',
                         'max' => 4096,
                     ]),
                 ],
@@ -44,7 +39,19 @@ class UserType extends AbstractType
             ->add('genre',  EntityType::class, [
                 'class' => Genre::class,
                 'choice_label' => 'genre',
-                'attr' => ['class' => 'genre-field']
+                'attr' => ['class' => 'form-control genre-field']
+            ])
+            ->add('photo', FileType::class, [
+                'mapped'=>false,
+                'label'=>' ',
+                'required' => false,
+                'attr' => [
+                    'id' => 'photo',
+                    'size' => '20000000',
+                    'accept'=>'.pdf,.jpg,.doc,.docx,.png,.gif',
+                    'name' => 'photo',
+                    'type' => 'file'
+                ],
             ]);
     }
 

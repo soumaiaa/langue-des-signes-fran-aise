@@ -9,7 +9,7 @@
 		<div class='container-md'>
 			<div class='row'>
 				<div class=' col-12 col-md-6 p-4 backRaisonLsf text-white '>
-					<h1 class='mt-5 mb-2 titreSection1'>Raisons D’apprendre
+					<h1 class='mt-3 mb-2 titreSection1'>Raisons D’apprendre
 						<br>
 						LSF:</h1>
 					<hr class='bold-hr'>
@@ -105,7 +105,28 @@
 		</div>
 	</section>
 	{# //////////////////section2/////////////// #}
-	<section id='decouvrir' class=''>
+	<section class='section2 py-5'>
+		<div class="container-md">
+			<div class="card2 my-2 ">
+				<div class="card-content ">
+					<h1 class="card-title">Commencez à apprendre la langue des signes dès maintenant !</h1>
+					<p class="card-description px-md-5">Vos compétences et votre personnalité sont des atouts précieux pour nous. Rejoignez-nous pour bénéficier de notre expertise et choisir le cours de langue des signes le plus adapté.</p>
+					{% if app.user %}
+						<a href="{{ path('app_cours', {userId: app.user.id})}}">
+							<button class="card-button">Rejoignez-nous</button>
+						</a>
+					{% else %}
+						<a href="{{ path('app_login') }}">
+							<button class="card-button">Rejoignez-nous</button>
+						</a>
+					{% endif %}
+				</div>
+			</div>
+
+		</div>
+	</section>
+	{# //////////////////section3/////////////// #}
+	<section id='decouvrir'>
 		<h1 class='titreDecouvrir text-center py-4 mb-0'>Découvrir la langue des signes</h1>
 		<section class="slide-wrapper">
 			<div class="backsection2Index">
@@ -124,7 +145,7 @@
 										<div class="spin-container ">
 											<div class="shape">
 												<div class="bd1 m-0 p-0">
-													<button type="button" class="btnModel1 " data-toggle="modal" data-target="#myModal1">
+													<button type="button" class="btnModel1 btnModel" data-toggle="modal" data-target="#myModal1">
 														<p class='m-md-5 w-75 text-center'>
 															Comment fonctionne
 															<br>
@@ -144,7 +165,7 @@
 										<div class="spin-container ">
 											<div class="shape">
 												<div class="bd2 m-0 p-0">
-													<button type="button" class="btnModel2 " data-toggle="modal" data-target="#myModal2">
+													<button type="button" class="btnModel2 btnModel" data-toggle="modal" data-target="#myModal2">
 														<p class='m-md-5 w-75 text-center'>Un signe,<br>
 															c’est plus qu’un
 															<br>
@@ -164,11 +185,11 @@
 										<div class="spin-container ">
 											<div class="shape">
 												<div class="bd3 m-0 p-0">
-													<button type="button" class="btnModel3 " data-toggle="modal" data-target="#myModal3">
+													<button type="button" class="btnModel3 btnModel" data-toggle="modal" data-target="#myModal3">
 														<p class='m-md-5 w-75 text-center'>Visual
 															<br>
-															Vernacular 
-																													"<span class='vv2'>VV</span>"</p>
+															Vernacular
+															<br>"<span class='vv2'>VV</span>"</p>
 													</button>
 												</div>
 											</div>
@@ -184,24 +205,32 @@
 			<div class="modal fade" id="myModal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 				<div class="modal-dialog" role="document">
 					<div class="modal-content">
-						<div class="modal-header">
-							<h5 class="modal-title" id="myModalLabel">Plus d'informations</h5>
-							<button type="button" class="fermer" data-dismiss="modal" aria-label="Close">
-								<span aria-hidden="true">&times;</span>
-							</button>
+						<div class="modal-header row">
+							<div class='col-md-3'>
+								<img class="modal-title  w-75" id="myModalLabel" src="{{asset('assets/img/logoTransparent.png')}}" alt="logo"><img></div>
+							<div class='col-md-7'>
+								<h1 class=''>La langue des signes est-elle universelle ?</h1>
+							</div>
+							<div class='col-md-2 text-center'>
+								<button type="button" class="fermer" data-dismiss="modal" aria-label="Close">
+									<span aria-hidden="true">&times;</span>
+								</button>
+							</div>
+
+
 						</div>
 						<div class="modal-body">
-							<h1>La langue des signes est-elle universelle ?</h1>
+
 							<p>
 								<span class='lorem mt-2'>C</span>
 								La langue des signes française (
 								<span class='span'>LSF</span>
 								) est visuelle, en 3D, et donc très différente des langues orales.
-															 Pour beaucoup de personnes qui apprennent cette langue, la grammaire de la LSF est l’un des points les plus intéressants : en langue des signes, on fait vivre l’histoire !
-															 La première chose à savoir, c’est que la langue des signes n’est pas un mime : c’est une langue à part entière, avec des signes bien précis pour représenter des idées, mais aussi une syntaxe, des intonations, et plein de subtilités.
+																																																																																																																																																																																																																																												 Pour beaucoup de personnes qui apprennent cette langue, la grammaire de la LSF est l’un des points les plus intéressants : en langue des signes, on fait vivre l’histoire !
+																																																																																																																																																																																																																																												 La première chose à savoir, c’est que la langue des signes n’est pas un mime : c’est une langue à part entière, avec des signes bien précis pour représenter des idées, mais aussi une syntaxe, des intonations, et plein de subtilités.
 							</p>
 
-							<h6>Des langues créées naturellement</h6>
+							<h5 class='text'>Des langues créées naturellement</h5>
 							<p>Les langues des signes sont des langues naturelles : c’est-à-dire que ce ne sont pas des langues qui ont été créées artificiellement par l’humain (comme c’est le cas par exemple pour les langages informatiques ou pour le morse). Elles se sont développées au fil du temps, selon les interactions entre les personnes.
 							</p>
 							<p>Et comme les langues orales, les langues des signes sont très liées à la culture. Par exemple, on ne mange traditionnellement pas de la même manière dans tous les pays : en langue des signes japonaise, le signe “manger” est réalisé en représentant des baguettes qu’on mène à sa bouche, ce qui n’est pas le cas dans les langues occidentales !
@@ -210,7 +239,7 @@
 							</p>
 							<div class='text-center'>
 
-								<video class="imgDecouvrir w-75" controls>
+								<video class="video" controls>
 									<source src="{{ asset('assets/video/vs.mp4') }}" type="video/mp4">
 								</video>
 								<p clas'text-bold'>Voici une vidéo de la super chaîne
@@ -231,17 +260,23 @@
 			<div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 				<div class="modal-dialog" role="document">
 					<div class="modal-content">
-						<div class="modal-header">
-							<h5 class="modal-title" id="myModalLabel">Plus d'informations</h5>
-							<button type="button" class="fermer" data-dismiss="modal" aria-label="Close">
-								<span aria-hidden="true">&times;</span>
-							</button>
+						<div class="modal-header row">
+							<div class='col-md-3'>
+								<img class="modal-title w-75" id="myModalLabel" src="{{asset('assets/img/logoTransparent.png')}}" alt="logo"><img></div>
+							<div class='col-md-7'>
+								<h1 class=''>Un signe, c’est plus qu’un geste</h1>
+							</div>
+							<div class='col-md-2 text-center'>
+								<button type="button" class="fermer" data-dismiss="modal" aria-label="Close">
+									<span aria-hidden="true">&times;</span>
+								</button>
+							</div>
 						</div>
 						<div class="modal-body">
-							<h1>Un signe, c’est plus qu’un geste</h1>
+
 							<p>
-								<span class='lorem mt-2'>L</span>La langue des signes française (<span class='span'>LSF</span>) est visuelle, en 3D, et donc très différente des langues orales.
-																																																																																																											 Pour beaucoup de personnes qui apprennent cette langue, la grammaire de la LSF est l’un des points les plus intéressants : en langue des signes, on fait vivre l’histoire !</p>
+								<span class='lorem mt-2'>L</span>a langue des signes française (<span class='span'>LSF</span>) est visuelle, en 3D, et donc très différente des langues orales.
+																																																																																																																																																																																																																																																																																																																																																																																																											 Pour beaucoup de personnes qui apprennent cette langue, la grammaire de la LSF est l’un des points les plus intéressants : en langue des signes, on fait vivre l’histoire !</p>
 
 							<p>On ne parle pas de « geste » mais de « signe », et il y a une bonne raison pour ça : 5 paramètres représentent un signe :</p>
 							<ul>
@@ -272,90 +307,197 @@
 			<div class="modal fade" id="myModal3" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 				<div class="modal-dialog" role="document">
 					<div class="modal-content">
-						<div class="modal-header">
-							<h5 class="modal-title" id="myModalLabel">Plus d'informations</h5>
-							<button type="button" class="fermer" data-dismiss="modal" aria-label="Close">
-								<span aria-hidden="true">&times;</span>
-							</button>
+						<div class="modal-header row">
+							<div class='col-md-3'>
+								<img class="modal-title w-75 " id="myModalLabel" src="{{asset('assets/img/logoTransparent.png')}}" alt="logo"><img></div>
+							<div class='col-md-7'>
+								<h1 class=''>Visual Vernacular</h1>
+							</div>
+							<div class='col-md-2 text-center'>
+								<button type="button" class="fermer" data-dismiss="modal" aria-label="Close">
+									<span aria-hidden="true">&times;</span>
+								</button>
+							</div>
+
+
 						</div>
 						<div class="modal-body">
-							<h1>Un signe, c’est plus qu’un geste</h1>
+
+							<div style="position: relative;">
+								<video autoplay loop muted playsinline class="video">
+									<source src="{{ asset('assets/video/s5.mp4') }}" type="video/mp4">
+								</video>
+
+								<div class='divVideo'>
+									<h5>Un art sourd qui n’a aucun équivalent</h5>
+								</div>
+							</div>
 							<p>
-								<span class='lorem mt-2'>L</span>La langue des signes française (<span class='span'>LSF</span>) est visuelle, en 3D, et donc très différente des langues orales.
-																																																																																																											 Pour beaucoup de personnes qui apprennent cette langue, la grammaire de la LSF est l’un des points les plus intéressants : en langue des signes, on fait vivre l’histoire !</p>
-
-							<p>On ne parle pas de « geste » mais de « signe », et il y a une bonne raison pour ça : 5 paramètres représentent un signe :</p>
-							<ul>
-								<li>
-									Configuration de la main : poing fermé, main à plat, doigts en V,…
-								</li>
-								<li>Orientation de la main : tournée vers le haut, face à l’interlocuteur, face à soi,…</li>
-								<li>Mouvement : un signe est dynamique, et ça compte ! On peut plier un doigt, tourner la main, la lever… Par exemple, le même geste, vers l’avant ou vers l’arrière, peut dire 2 choses différentes : l’année prochaine (signe vers l’avant) VS l’année dernière (signe vers l’arrière)</li>
-								<li>Place du signe dans l’espace : encore une fois, des signes quasi-identiques mais situés respectivement au niveau de son épaule, de sa hanche, ou de sa poitrine peuvent vouloir dire des choses qui n’ont rien à voir !</li>
-								<li>Expression du visage : on touche au paramètre le plus difficile pour les entendant·e·s qui apprennent la langue des signes. Quand les sourd·e·s ont du mal à comprendre un·e entendant·e ou disent qu’une personne a « un accent entendant », c’est souvent ce point qui est en jeu. L’expression du visage fait partie intégrante du signe : si vous réalisez le bon geste, avec le bon mouvement, et la bonne position dans l’espace, mais sans l’expression du visage, c’est un peu comme si vous prononciez un mot en français sans les consonnes !</li>
-							</ul>
-							<p>La LSF est une langue très riche. C’est bien plus qu’un mime, et bien plus qu’une suite de signes. C’est une langue visuelle, en 3D, ce qui apporte beaucoup d’originalité pour un·e entendant·e. Dans cet article, vous avez appris :</p>
-							<ul>
-								<li>Les différents types de signes : iconiques, inspirés du français, inventés</li>
-								<li>Les paramètres d’un signe : configuration de la main, orientation, placement, mouvement, expression du visage</li>
-								<li>Les bases de la grammaire en LSF : syntaxe, ligne du temps, verbes directifs.</li>
-								<p>La langue des signes est très différente de la langue orale, et il vous reste plein de choses à découvrir, comme les classificateurs, les signes de temps propres à la LSF,… Ce sera pour un prochain article !</p>
-							</ul>
-
-						</div>
-						<div class="modal-footer">
-							<button type="button" class="btn " data-dismiss="modal">Fermer</button>
-						</div>
+								<span class='lorem mt-2'>L</span>e Visual Vernacular est un
+								<span class='span'>art visuel unique de la communauté sourde</span>. N’essayez pas de lui trouver un équivalent, c’est impossible ! Ce n’est pas un poème, ni un mime, pas une chanson, ni du chansigne, ce n’est pas du cinéma muet, ni une représentation théâtrale, pas une peinture corporelle ni une danse… C’est du Visual Vernacular!</p>
+							Pour beaucoup de personnes qui apprennent cette langue, la grammaire de la LSF est l’un des points les plus intéressants : en langue des signes, on fait vivre l’histoire !</p>
+						<h5 class='text'>VV : de quoi parle-t-on ?</h5>
+						<p>Le Visual Vernacular est un art visuel. On s’inspire du cinéma, des BD, des jeux vidéos, pour représenter une histoire visuellement, avec son corps.							
+																																																																																																																																																																																																																		Le VV n’est pas lié à une langue (pas même la langue des signes), c’est un art universel. Même si la langue des signes n’est pas universelle, cet art peut donc être compris de manière internationale. Ça signifie aussi que c’est un art qui peut être compris par tou·te·s, sourd·e·s comme entendant·e·s.</p>
+						<p>Le Visual Vernacular (abrégé et signé « VV ») est un art visuel. On s’inspire du cinéma, des BD, des jeux vidéos, pour représenter une histoire visuellement, avec son corps.
+							<div class='text-center'>
+								Le VV n’est pas lié à une langue (pas même la langue des signes), c’est un art universel. Même si la langue des signes n’est pas universelle, cet art peut donc être compris de manière internationale. Ça signifie aussi que c’est un art qui peut être compris par tou·te·s, sourd·e·s comme entendant·e·s.</p>
+							<video class="video" controls>
+								<source src="{{ asset('assets/video/vv.mp4') }}" type="video/mp4"></video>
+						</p>
+						<p>Une vidéo de VV particulièrement connue est « Caterpillar » d’Ian Sanborn, un artiste américain.</p>
 					</div>
+					<h5 class='text'>En conclusion : un art sourd unique</h5>
+					<p>Le Visual Vernacular est un art visuel : il ne dépend pas d’une langue (même pas d’une langue des signes). C’est le corps qui raconte l’histoire, ce qui permet d’effacer les barrières de compréhension entre sourd·e·s et entendant·e·s, et entre personnes de langues différentes.</p>
+					<p>Contrairement au chansigne (traduction de chansons qui sont traduites en langue des signes), avec le VV on ne passe pas de l’univers entendant à l’univers sourd. Cet art se démarque en particulier par le fait fait que ses racines viennent de la communauté sourde.</p>
+					<p>Le Visual Vernacular est de plus en plus populaire dans la communauté sourde. Pour en voir « en vrai », rendez-vous lors de certaines Journées Mondiales de Sourds, ou au
+						<a class='vv' href="https://www.clin-doeil.eu/fr/index.html">
+							Festival Clin d’Oeil</a>, tous les 2 ans à Reims.</p>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn " data-dismiss="modal">Fermer</button>
 				</div>
 			</div>
 		</section>
 	</section>
-	{# //////////////// section3///////////////// #}
-	<section class='backsection3Index py-5 '>
-		<div class='containair-md'>
-			<div class='row text-center'>
-				<div class='cartpdf py-3 my-2 col-md-4'>
-					<div class="pdf-badge">PDF</div>
-					<img class='imgCarte ' src="{{asset('assets/file/file1.jpg')}}" alt="">
-					<h3 class='p-2 titreFile'>Aide à la communication en LSF</h3>
-					<button class='buttonFile'>Télécharger</button>
-				</div>
-				<div class='cartpdf py-3 my-2 col-md-4'>
-					<img class='imgCarte' src="{{asset('assets/file/file2.jpg')}}" alt="">
-					<div class="pdf-badge">PDF</div>
-					<h3 class='p-2 titreFile'>Petit Guide LSF</h3>
-					<button class='buttonFile'>Télécharger</button>
-				</div>
-				<div class='cartpdf py-3 my-2 col-md-4'>
-					<img class='imgCarte' src="{{asset('assets/file/file3.jpg')}}" alt="">
-					<div class="pdf-badge">PDF</div>
-					<h3 class='p-2 titreFile'>Langue de Signes Française</h3>
-					<button class='buttonFile'>Télécharger</button>
-				</div>
+	{# /////////////////// section4////////////////////// #}
+	<section class='section4'>
+		<section id="timeline">
+			<h1>Cours en Langue des Signes Française (LSF)</h1>
+			<p class="leader">Un quiz est proposé à la fin du chaque module, et un score suffisant est requis pour passer au module suivant.</p>
+			<div class="demo-card-wrapper">
+				{% for category in categories%}
+
+					<div class="demo-card demo-card--step{{ loop.index }}">
+						<div class="head">
+							<div class="number-box">
+								<span>0{{ loop.index }}</span>
+							</div>
+							<h2>
+								<span class="small">cours</span>
+								{{category.nom}}
+							</h2>
+							{# <div class="number-box">
+								<p class='d-flex grade'>
+									<i class="fas fa-comment-dots text-info mr-2"></i>
+									{{ gradeCount }}
+								</p>
+								<p class='d-flex grade'>
+									<i class="fas fa-star text-warning"></i>
+									{{ gradeTotal|number_format(1) }}/5
+								</p>
+
+							</div> #}
+						</div>
+						<div class="body">
+							<p class='module-text'>{{category.description}}</p>
+							<img class='image-module' src="{{ asset(category.photo) }}" alt="Graphic">
+						</div>
+						<div></div>
+					</div>
+
+				{% endfor %}
+
 			</div>
+
+		</section>
+		<div class="text-center py-5">
+			{% if app.user %}
+				<a href="{{ path('app_cours', {userId: app.user.id})}}">
+					<button class="btn">Commencer</button>
+				</a>
+			{% else %}
+				<a href="{{ path('app_login') }}">
+					<button class="btn">Connecter pour commencer</button>
+				</a>
+			{% endif %}
 		</div>
 	</section>
+	{# //////////////// section5///////////////// #}
+	<section class='backsection3Index py-5 '>
+		<div class='containair'>
+
+			<div class='row text-center'>
+				<div class="col-md-4 py-5  d-flex justify-content-center">
+					<div class="card text-center">
+						<div class="circle"></div>
+						<div class="circle"></div>
+						<div class="card-inner">
+							<div class="pdf-badge">PDF</div>
+							<img class='imgCarte ' src="{{asset('assets/file/file1.jpg')}}" alt="">
+							<h3 class='p-2 titreFile'>Aide à la communication en LSF</h3>
+
+							<button class="Download-button">
+								<svg viewbox="0 0 640 512" width="20" height="16" xmlns="http://www.w3.org/2000/svg">
+									<path fill="white" d="M144 480C64.5 480 0 415.5 0 336c0-62.8 40.2-116.2 96.2-135.9c-.1-2.7-.2-5.4-.2-8.1c0-88.4 71.6-160 160-160c59.3 0 111 32.2 138.7 80.2C409.9 102 428.3 96 448 96c53 0 96 43 96 96c0 12.2-2.3 23.8-6.4 34.6C596 238.4 640 290.1 640 352c0 70.7-57.3 128-128 128H144zm79-167l80 80c9.4 9.4 24.6 9.4 33.9 0l80-80c9.4-9.4 9.4-24.6 0-33.9s-24.6-9.4-33.9 0l-39 39V184c0-13.3-10.7-24-24-24s-24 10.7-24 24V318.1l-39-39c-9.4-9.4-24.6-9.4-33.9 0s-9.4 24.6 0 33.9z"></path>
+								</svg>
+								<span>Telecharger</span>
+							</button>
+
+
+						</div>
+					</div>
+				</div>
+				<div class="col-md-4 py-5 d-flex justify-content-center">
+					<div class="card">
+						<div class="circle"></div>
+						<div class="circle"></div>
+						<div class="card-inner">
+							<img class='imgCarte' src="{{asset('assets/file/file2.jpg')}}" alt="">
+							<div class="pdf-badge">PDF</div>
+							<h3 class='p-2 titreFile'>Petit Guide LSF</h3>
+							<button class="Download-button">
+								<svg viewbox="0 0 640 512" width="20" height="16" xmlns="http://www.w3.org/2000/svg">
+									<path fill="white" d="M144 480C64.5 480 0 415.5 0 336c0-62.8 40.2-116.2 96.2-135.9c-.1-2.7-.2-5.4-.2-8.1c0-88.4 71.6-160 160-160c59.3 0 111 32.2 138.7 80.2C409.9 102 428.3 96 448 96c53 0 96 43 96 96c0 12.2-2.3 23.8-6.4 34.6C596 238.4 640 290.1 640 352c0 70.7-57.3 128-128 128H144zm79-167l80 80c9.4 9.4 24.6 9.4 33.9 0l80-80c9.4-9.4 9.4-24.6 0-33.9s-24.6-9.4-33.9 0l-39 39V184c0-13.3-10.7-24-24-24s-24 10.7-24 24V318.1l-39-39c-9.4-9.4-24.6-9.4-33.9 0s-9.4 24.6 0 33.9z"></path>
+								</svg>
+								<span>Telecharger</span>
+							</button>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-4 py-5 d-flex justify-content-center">
+					<div class="card">
+						<div class="circle"></div>
+						<div class="circle"></div>
+						<div class="card-inner">
+							<img class='imgCarte' src="{{asset('assets/file/file3.jpg')}}" alt="">
+							<div class="pdf-badge">PDF</div>
+							<h3 class='p-2 titreFile'>Langue de Signes Française</h3>
+							<button class="Download-button">
+								<svg viewbox="0 0 640 512" width="20" height="16" xmlns="http://www.w3.org/2000/svg">
+									<path fill="white" d="M144 480C64.5 480 0 415.5 0 336c0-62.8 40.2-116.2 96.2-135.9c-.1-2.7-.2-5.4-.2-8.1c0-88.4 71.6-160 160-160c59.3 0 111 32.2 138.7 80.2C409.9 102 428.3 96 448 96c53 0 96 43 96 96c0 12.2-2.3 23.8-6.4 34.6C596 238.4 640 290.1 640 352c0 70.7-57.3 128-128 128H144zm79-167l80 80c9.4 9.4 24.6 9.4 33.9 0l80-80c9.4-9.4 9.4-24.6 0-33.9s-24.6-9.4-33.9 0l-39 39V184c0-13.3-10.7-24-24-24s-24 10.7-24 24V318.1l-39-39c-9.4-9.4-24.6-9.4-33.9 0s-9.4 24.6 0 33.9z"></path>
+								</svg>
+								<span>Telecharger</span>
+							</button>
+						</div>
+					</div>
+				</div>
+			</div>
+
+		</div>
+
+	</section>
+
 	{% block script %}
 		 <script>
-		$(document).ready(function() {
-		    // Gestion des points pour le carrousel horizontal
-		    $('.point').on('click', function() {
-		        var index = $(this).index();
-		        $('#carouselExampleControls').carousel(index);
-		        $('.point').removeClass('pointActive');
-		        $(this).addClass('pointActive');
-		    });
-		
-		    $('#carouselExampleControls').on('slide.bs.carousel', function(e) {
-		        var newIndex = $(e.relatedTarget).index();
-		        $('.point').removeClass('pointActive');
-		        $('#point' + (newIndex + 1)).addClass('pointActive');
-		    });
-		
-		});
-		
-		
-		</script>
+																																																			$(document).ready(function() {
+																																																			    // Gestion des points pour le carrousel horizontal
+																																																			    $('.point').on('click', function() {
+																																																			        var index = $(this).index();
+																																																			        $('#carouselExampleControls').carousel(index);
+																																																			        $('.point').removeClass('pointActive');
+																																																			        $(this).addClass('pointActive');
+																																																			    });
+																																																			
+																																																			    $('#carouselExampleControls').on('slide.bs.carousel', function(e) {
+																																																			        var newIndex = $(e.relatedTarget).index();
+																																																			        $('.point').removeClass('pointActive');
+																																																			        $('#point' + (newIndex + 1)).addClass('pointActive');
+																																																			    });
+																																																			
+																																																			});
+																																																			
+																																																			
+																																										</script>
 	{% endblock %}
 {% endblock %}
