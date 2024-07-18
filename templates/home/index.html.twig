@@ -5,6 +5,7 @@
 
 {% block body %}
 	{# //////////////////section1///////////// #}
+	  
 	<section class='backgroundIndex'>
 		<div class='container-md'>
 			<div class='row'>
@@ -419,10 +420,10 @@
 
 			<div class='row text-center'>
 				<div class="col-md-4 py-5  d-flex justify-content-center">
-					<div class="card text-center">
+					<div class="cardpdf text-center">
 						<div class="circle"></div>
 						<div class="circle"></div>
-						<div class="card-inner">
+						<div class="card-innerpdf">
 							<div class="pdf-badge">PDF</div>
 							<img class='imgCarte ' src="{{asset('assets/file/file1.jpg')}}" alt="">
 							<h3 class='p-2 titreFile'>Aide à la communication en LSF</h3>
@@ -439,10 +440,10 @@
 					</div>
 				</div>
 				<div class="col-md-4 py-5 d-flex justify-content-center">
-					<div class="card">
+					<div class="cardpdf">
 						<div class="circle"></div>
 						<div class="circle"></div>
-						<div class="card-inner">
+						<div class="card-innerpdf">
 							<img class='imgCarte' src="{{asset('assets/file/file2.jpg')}}" alt="">
 							<div class="pdf-badge">PDF</div>
 							<h3 class='p-2 titreFile'>Petit Guide LSF</h3>
@@ -456,10 +457,10 @@
 					</div>
 				</div>
 				<div class="col-md-4 py-5 d-flex justify-content-center">
-					<div class="card">
+					<div class="cardpdf">
 						<div class="circle"></div>
 						<div class="circle"></div>
-						<div class="card-inner">
+						<div class="card-innerpdf">
 							<img class='imgCarte' src="{{asset('assets/file/file3.jpg')}}" alt="">
 							<div class="pdf-badge">PDF</div>
 							<h3 class='p-2 titreFile'>Langue de Signes Française</h3>
@@ -473,31 +474,33 @@
 					</div>
 				</div>
 			</div>
-
 		</div>
-
-	</section>
-
+	</section>	
+	  <div class="cookie-consent">
+            <p>Ce site utilise des cookies pour améliorer l'expérience utilisateur.</p>
+            <form action="{{ path('consent_page') }}" method="post">
+                <button type="submit">J'accepte</button>
+            </form>
+        </div>
 	{% block script %}
-		 <script>
-																																																			$(document).ready(function() {
-																																																			    // Gestion des points pour le carrousel horizontal
-																																																			    $('.point').on('click', function() {
-																																																			        var index = $(this).index();
-																																																			        $('#carouselExampleControls').carousel(index);
-																																																			        $('.point').removeClass('pointActive');
-																																																			        $(this).addClass('pointActive');
-																																																			    });
-																																																			
-																																																			    $('#carouselExampleControls').on('slide.bs.carousel', function(e) {
-																																																			        var newIndex = $(e.relatedTarget).index();
-																																																			        $('.point').removeClass('pointActive');
-																																																			        $('#point' + (newIndex + 1)).addClass('pointActive');
-																																																			    });
-																																																			
-																																																			});
-																																																			
-																																																			
-																																										</script>
+<script>
+//////////////////////////pour cookies ////////////////////////
+
+/////////////////////////////////////////////////////////
+$(document).ready(function() {
+    // Gestion des points pour le carrousel horizontal
+    $('.point').on('click', function() {
+        var index = $(this).index();
+        $('#carouselExampleControls').carousel(index);
+        $('.point').removeClass('pointActive');
+        $(this).addClass('pointActive');
+    });
+     $('#carouselExampleControls').on('slide.bs.carousel', function(e) {
+        var newIndex = $(e.relatedTarget).index();
+        $('.point').removeClass('pointActive');
+        $('#point' + (newIndex + 1)).addClass('pointActive');
+    });
+});
+</script>
 	{% endblock %}
 {% endblock %}

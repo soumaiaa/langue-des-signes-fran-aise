@@ -1,108 +1,129 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Quiz{% endblock %}
-
+{% block title %}Quiz
+{% endblock %}
 {% block body %}
-    <h1>{{ quiz.titre.nom }}</h1>
-    <p>{{ quiz.description }}</p>
+	<section class="background-quiz py-5">
+		<div class="quiz-header">
+			<h1>{{ quiz.titre.nom }}</h1>
+			<p>{{ quiz.description }}</p>
+		</div>
 
-    <div id="quiz-container" data-quiz-id="{{ quiz.id }}">
-        {% for question in quiz.questions %}
-            <div class="question" id="question-{{ question.id }}" style="display: none;">
-                <img class="" src="{{ asset(question.question) }}" alt="">
-                <form class="answer-form" data-question-id="{{ question.id }}">
-                    <ul>
-                        {% for reponse in question.reponses %}
-                            <li>
-                                <label>
-                                    <input type="radio" name="reponse" value="{{ reponse.id }}">
-                                    {{ reponse.reponse }}
-                                </label>
-                            </li>
-                        {% endfor %}
-                    </ul>
-                </form>
-            </div>
-        {% endfor %}
-    </div>
+		<div id="quiz-container" class="quiz-container" data-quiz-id="{{ quiz.id }}">
+			{% for question in quiz.questions %}
+				<div class="question" id="question-{{ question.id }}" style="display: none;">
+					<div class='row d-flex align-items-center'>
+						<div class='col-md-6 text-center'>
+							<img class="question-image" src="{{ asset(question.question) }}" alt="">
+						</div>
+						<div class='col-md-6'>
+							<form class="answer-form" data-question-id="{{ question.id }}">
+								<ul>
+									{% for reponse in question.reponses %}
+										<li>
+											<label class="answer-label">
+												<input type="radio" name="reponse" value="{{ reponse.id }}">
+												{{ reponse.reponse }}
+											</label>
+										</li>
+									{% endfor %}
+								</ul>
+							</form>
+						</div>
+					</div>
+				</div>
+			{% endfor %}
+		</div>
 
-    <button id="next-button">Suivant</button>
-    <div>Score: <span id="score">0</span></div>
+		<button id="next-button" class="next-button">Suivant</button>
+		<div class="score-container">Score:
+			<span id="score">0</span>
+		</div>
+	</section>
 {% endblock %}
 
 {% block script %}
-    <script>
-        const currentCategoryId = {{ category.id }};
-        const userId = {{ user.id }};
-        const quizId = document.getElementById('quiz-container').dataset.quizId;
-        let currentQuestionIndex = 0;
-        const questions = document.querySelectorAll('.question');
-        const nextButton = document.getElementById('next-button');
-        let score = 0;
-
-        function showQuestion(index) {
-            questions.forEach((question, idx) => {
-                question.style.display = (idx === index) ? 'block' : 'none';
-            });
-        }
-		  // Automatically change question every 10 seconds
-        setInterval(() => {
-            if (currentQuestionIndex < questions.length - 1) {
-                currentQuestionIndex++;
-                showQuestion(currentQuestionIndex);
-            }
-        }, 10000); 
-
-        function checkAnswerAndProceed() {
-            const currentForm = questions[currentQuestionIndex].querySelector('.answer-form');
-            const formData = new FormData(currentForm);
-            const reponseId = formData.get('reponse');
-
-            fetch(`/quiz/check-answer`, {
-                method: 'POST',
-                body: new URLSearchParams({
-                    'reponseId': reponseId,
-                    'categoryId': currentCategoryId,
-                    'userId': userId,
-                    'score': score
-                })
-            })
-            .then(response => response.json())
-            .then(data => {
-                if (data.correct) {
-                    score++;
-                    document.getElementById('score').textContent = score;
-                }
-
-                if (currentQuestionIndex < questions.length - 1) {
-                    currentQuestionIndex++;
-                    showQuestion(currentQuestionIndex);
-                } else {
-                    // Save the final score and redirect to results page
-                    fetch(`/quiz/save-score`, {
-                        method: 'POST',
-                        body: new URLSearchParams({
-                            'userId': userId,
-                            'quizId': quizId,
-                            'score': score
-                        })
-                    })
-                    .then(() => {
-                        // Redirect to results page with categoryId included
-                       window.location.href = `/quiz/${userId}/${currentCategoryId}/results`;
-
-                    });
-                }
-            });
-        }
-
-        nextButton.addEventListener('click', () => {
-            checkAnswerAndProceed();
-        });
-
-        // Show the first question initially
-        showQuestion(currentQuestionIndex);
-    </script>
+	 <script>
+					       document.addEventListener("DOMContentLoaded", function () {
+				    const currentCategoryId = {{ category.id }};
+				    const userId = {{ user.id }};
+				    const quizId = document.getElementById('quiz-container').dataset.quizId;
+				    let currentQuestionIndex = 0;
+				    const questions = document.querySelectorAll('.question');
+				    const nextButton = document.getElementById('next-button');
+				    let score = 0;
+				
+				    function showQuestion(index) {
+				        questions.forEach((question, idx) => {
+				            if (idx === index) {
+				                question.style.display = 'block';
+				                setTimeout(() => {
+				                    question.classList.add('active');
+				                }, 10);
+				            } else {
+				                question.classList.remove('active');
+				                setTimeout(() => {
+				                    question.style.display = 'none';
+				                }, 500); // Duration of the transition
+				            }
+				        });
+				    }
+					//   Automatically change question every 20 seconds
+			        // setInterval(() => {
+			        //     if (currentQuestionIndex < questions.length - 1) {
+			        //         currentQuestionIndex++;
+			        //         showQuestion(currentQuestionIndex);
+			        //     }
+			        // }, 20000); 
+				    function checkAnswerAndProceed() {
+				        const currentForm = questions[currentQuestionIndex].querySelector('.answer-form');
+				        const formData = new FormData(currentForm);
+				        const reponseId = formData.get('reponse');
+				
+				        fetch(`/quiz/check-answer`, {
+				            method: 'POST',
+				            body: new URLSearchParams({
+				                'reponseId': reponseId,
+				                'categoryId': currentCategoryId,
+				                'userId': userId,
+				                'score': score
+				            })
+				        })
+				        .then(response => response.json())
+				        .then(data => {
+				            if (data.correct) {
+				                score++;
+				                document.getElementById('score').textContent = score;
+				            }
+				
+				            if (currentQuestionIndex < questions.length - 1) {
+				                currentQuestionIndex++;
+				                showQuestion(currentQuestionIndex);
+				            } else {
+				                // Save the final score and redirect to results page
+				                fetch(`/quiz/save-score`, {
+				                    method: 'POST',
+				                    body: new URLSearchParams({
+				                        'userId': userId,
+				                        'quizId': quizId,
+				                        'score': score
+				                    })
+				                })
+				                .then(() => {
+				                    // Redirect to results page with categoryId included
+				                    window.location.href = `/quiz/${userId}/${currentCategoryId}/results`;
+				                });
+				            }
+				        });
+				    }
+				
+				    nextButton.addEventListener('click', () => {
+				        checkAnswerAndProceed();
+				    });
+				
+				    // Show the first question initially
+				    showQuestion(currentQuestionIndex);
+				});
+				
+					    </script>
 {% endblock %}
-
-

@@ -1,4 +1,4 @@
-{% extends 'base.html.twig' %}
+{# {% extends 'base.html.twig' %}
 
 {% block title %}Résultat du Quiz
 {% endblock %}
@@ -37,5 +37,109 @@
     </tbody>
 </table>
 
+	{% endif %}
+{% endblock %} #}
+
+
+{% extends 'base.html.twig' %}
+
+{% block title %}Résultat du Quiz
+{% endblock %}
+
+{% block body %}
+	<section class='container-md'>
+		<h1 class='mt-5'>Résultat du Quiz</h1>
+		<p>Votre score :
+			{{ score }}/10</p>
+		{% if score < 5 %}
+			<div class="pb-5 results-summary-container">
+				<div class="results-summary-container__result">
+
+					<div class="heading-tertiary">Votre score</div>
+					<div class="result-box">
+						<div class="heading-primary">{{ score }}</div>
+						<p class="result">of 10</p>
+					</div>
+					<p class="paragraph">Vous ne pouvez pas passer au module suivant, votre score est insuffisant. Commencez de nouveau.</p>
+				</div>
+			</div>
+		{% else %}
+			<div class="results-summary-container">
+				<div class="confetti">
+					<div class="confetti-piece"></div>
+					<div class="confetti-piece"></div>
+					<div class="confetti-piece"></div>
+					<div class="confetti-piece"></div>
+					<div class="confetti-piece"></div>
+					<div class="confetti-piece"></div>
+					<div class="confetti-piece"></div>
+					<div class="confetti-piece"></div>
+					<div class="confetti-piece"></div>
+					<div class="confetti-piece"></div>
+					<div class="confetti-piece"></div>
+					<div class="confetti-piece"></div>
+					<div class="confetti-piece"></div>
+					<div class="confetti-piece"></div>
+					<div class="confetti-piece"></div>
+					<div class="confetti-piece"></div>
+					<div class="confetti-piece"></div>
+					<div class="confetti-piece"></div>
+					<div class="confetti-piece"></div>
+				</div>
+				<div class="results-summary-container__result">
+
+					<div class="heading-tertiary">Votre score</div>
+					<div class="result-box">
+						<div class="heading-primary">{{ score }}</div>
+						<p class="result">de 10</p>
+					</div>
+					<p class="paragraph">Félicitations ! Vous avez complété tous les modules.</p>
+				</div>
+			</div>
+			<div class='text-center my-5'>
+				{% if nextCategory %}
+					<a href="{{ path('app_cours', {userId: user.id, categoryId: nextCategory.id}) }}" class="a">
+						<button class="buttonreslt">Passer au cours suivant
+						</button>
+					</a>
+					{# <a href="{{ path('app_cours', {userId: user.id, categoryId: nextCategory.id}) }}" class="btn btn-primary">Passer au cours suivant</a> #}
+
+				{% else %}
+					<a href="{{ path('app_results_final', {userId: user.id, categoryId: categoryId}) }}" class="a">
+						<button class="buttonreslt">Voir les résultats finaux
+						</button>
+					</a>
+				{% endif %}
+			</div>
+		{% endif %}
+
+		{% if usersScores is not empty %}
+			<h2>TOP 10</h2>
+			<div class="row py-5">
+
+				{% for userScore in usersScores %}
+					<div class="other-user-card col-md-4 text-center mx-auto m-3 text-center">
+
+						<div class="other-user-outline ">
+							{% if userScore.user.photo is not null and userScore.user.photo.url is not null %}
+								<img class="imageAvatar mt-2" src="{{ asset('uploads/brochures/' ~ userScore.user.photo.url) }}"/>
+							{% else %}
+								<img class="imageAvatar mt-2" src="{{ asset('assets/img/iconprofile.svg') }}"/>
+							{% endif %}
+							<p class="other-user-name">{{ userScore.user.prenom }}
+								{{ userScore.user.nom }}</p>
+						</div>
+						<div class="other-user-details ">
+							<div class="other-user-score-box ">
+								<p class="other-score-label">Score</p>
+								<p class="other-score-value">{{ userScore.getScore() }}/10</p>
+							</div>
+						</div>
+					</div>
+
+
+				{% endfor %}
+			</div>
+		</section>
 	{% endif %}
 {% endblock %}

@@ -4,36 +4,33 @@
 {% endblock %}
 
 {% block body %}
-	<section id="cours-section" class=" container-md background-cours-alphabet">
-		<h1 class="text-center section-title py-5 ">Cours -
+	<section id="cours-section">
+		<h1 class="text-center section-title py-5  container-md ">Cours -
 			{{ category.nom }}
 		</h1>
 		{% if category.nom is same as('Module N°1') %}
-			<div class="row mx-auto py-5 background-cours-alphabet">
+			<div class="row text-center mx-auto py-5 container-md ">
 				<h2>L'ALPHABET:</h2>
 				{% for cour in cours %}
-					<div class=" col-md-3 text-center">
+					<div class=" col-md-4 text-center">
 						<img class=" imgModule1 mt-2" src="{{ asset(cour.url) }}" alt="">
 					</div>
 				{% endfor %}
-				<div>
-					<div class='text-center mt-4 d-flex justify-content-around'>
-						<a href="https://www.youtube.com/watch?v=jg5zXcN2tlY&t=79s">
-							<button class="btn btn-primary">Regarder vidéo</button>
-						</a>
-
-
-						<a href="{{ path('app_quiz', {'userId': user.id, 'categoryId': category.id}) }}">
-							<button class="btn btn-primary">Aller au quiz
-							</button>
-						</a>
-					</div>
-				</div>
 			</div>
+			<div class='text-center my-5 d-flex justify-content-around'>
+				<a href="https://www.youtube.com/watch?v=jg5zXcN2tlY&t=79s">
+					<button class="btn btn-primary">Regarder vidéo</button>
+				</a>
+				<a href="{{ path('app_quiz', {'userId': user.id, 'categoryId': category.id}) }}">
+					<button class="btn btn-primary">Aller au quiz
+					</button>
+				</a>
+			</div>
+
 		{% else %}
 			{% for cour in cours %}
-			    
-				<div class="card-cours row pb-4 mb-5 mx-md-3">
+
+				<div class="card-cours row pb-4 mx-md-3">
 					<div class="col-md-4">
 						<img class="image-cours" src="{{ asset(cour.url) }}" alt="">
 					</div>
@@ -41,97 +38,147 @@
 						<h1 class='card-2 text-center pt-2 pb-3 vv'>{{ cour.titre }}</h1>
 						<p class='card-3 p-md-3 '>{{ cour.contenu }}</p>
 						<div class="text-center pt-2 pt-md-4">
-							<div class="m-2">
-								<a class='card-4 px-5 py-2' href="{{ path('app_quiz', {'userId': user.id, 'categoryId': category.id}) }}">
+							<div class="m-2  mb-5">
+								<a class='card-4 px-5 py-2' href="{{ cour.url }}">
 									Regarder un vidéo
 								</a>
 							</div>
 						</div>
 					</div>
 				</div>
-				
+
 			{% endfor %}
-			<div class='text-center'>
-			<a href="{{ path('app_quiz', {'userId': user.id, 'categoryId': category.id}) }}">
-				<button class="btn btn-primary">Aller au quiz
-				</button>
-			</a>
+			<div class='text-center mb-5'>
+				<a href="{{ path('app_quiz', {'userId': user.id, 'categoryId': category.id}) }}">
+					<button class="btn btn-primary">Aller au quiz
+					</button>
+				</a>
 			</div>
 		{% endif %}
-		<h3 class="mt-5 mb-4 mx-md-5">Commentaires:</h3>
-		<div class="comments-list">
-			{% for commentaire in commentaires %}
-				<div class="card mb-3">
-					<div class="card-body">
-						<div class="d-flex align-items-center">
-							{% if commentaire.user.photo is not null %}
-								<img class="imageAvatar rounded-circle mr-3" src="{{ asset('uploads/brochures/' ~ commentaire.user.photo.url) }}" alt="Avatar de {{ commentaire.user.nom }}">
-							{% else %}
-								<img class="imageAvatar rounded-circle mr-3" src="{{ asset('assets/img/iconprofile.svg') }}" alt="Avatar par défaut">
-							{% endif %}
-							<div>
-								<span class="font-weight-bold">{{ commentaire.user.nom }}</span>
-								<div class="star-rating" data-rating="{{ commentaire.note }}">
-									{% for i in range(1, 5) %}
-										{% if i <= commentaire.note %}
-											<i class="fas fa-star text-warning"></i>
-										{% else %}
-											<i class="far fa-star text-warning"></i>
-										{% endif %}
-									{% endfor %}
-								</div>
-								{# <span class="ml-2">{{ commentaire.note }}/5</span> #}
+		<section class="background-commentaire-alphabet mb-5 pb-5 container-md">
+			<div class="row">
+				<div class='col-md-2'></div>
+				<div class='col-md-8'>
+					<section id="commentaire-section" class=''>
+						<div class="comment-form mt-5">
+							<div class="text-center mb-4">
+								<h2 class="section-title">Ajouter un commentaire</h2>
 							</div>
-						</div>
-						<p class="card-text mt-3">{{ commentaire.message }}</p>
-					</div>
-				</div>
-			{% endfor %}
-		</div>
-		<p class="mt-5"><i class="fas fa-comment-dots text-info mr-2"></i>
-			{{ gradeCount }}</p>
-		<p><i class="fas fa-star text-warning"></i>
-			{{ gradeTotal|number_format(1) }}/5</p>
+							<div>
+								<p class="mt-5">
+									<i class="fas fa-comment-dots text-info mr-2"></i>
+									{{ gradeCount }}
+									<i class="fas fa-star text-warning"></i>
+									{{ gradeTotal|number_format(1) }}/5
 
-	</section>
-	<section id="commentaire-section">
-		<div class="comment-form mt-5">
-			<div class="text-center mb-4">
-				<h2 class="section-title">Ajouter un commentaire</h2>
+								</p>
+							</div>
+							{{ form_start(form) }}
+							{{ form_row(form.note) }}
+							<div class="rating mt-3">
+								<input value="5" name="rate" id="star5" type="radio">
+								<label title="text" for="star5" class="fas fa-star"></label>
+								<input value="4" name="rate" id="star4" type="radio">
+								<label title="text" for="star4" class="fas fa-star"></label>
+								<input value="3" name="rate" id="star3" type="radio">
+								<label title="text" for="star3" class="fas fa-star"></label>
+								<input value="2" name="rate" id="star2" type="radio">
+								<label title="text" for="star2" class="fas fa-star"></label>
+								<input value="1" name="rate" id="star1" type="radio">
+								<label title="text" for="star1" class="fas fa-star"></label>
+							</div>
+							<div class=''>
+
+								{{ form_row(form.message, {'attr': {'class': 'form-control', 'label':' ', 'placeholder': 'Votre commentaire'}}) }}
+							</div>
+							{{ form_row(form._token) }}
+							<div class='text-center'>
+								<button type="submit" class="btn btn-primary mt-4">Envoyer</button>
+							</div>
+							{{ form_end(form) }}
+						</div>
+					</section>
+
+					<h3 class="mt-5 mb-4">Tous les commentaires:</h3>
+					<div class="comment-section">
+						<div id="commentsContainer" class="comments-container">
+							{% for commentaire in commentaires %}
+								<div
+									class="comments-list row">
+									<!-- Avatar -->
+									{% if commentaire.user.photo is not null %}
+										<div class='col-md-3'>
+											<img class="comment-avatar mb-2 ms-3" src="{{ asset('uploads/brochures/' ~ commentaire.user.photo.url) }}" alt="Avatar de {{ commentaire.user.nom }}">
+										</div>
+									{% else %}
+										<div class='col-md-3'>
+											<img class="comment-avatar ms-3" src="{{ asset('assets/img/iconprofile.svg') }}" alt="Avatar par défaut">
+										</div>
+									{% endif %}
+									<!-- Contenedor del Comentario -->
+									<div class="comment-box-container col-md-9">
+										<div class='triangle'></div>
+										<div class="comment-box">
+											<div class="comment-head">
+												<div class='row'>
+													<div class='col-md-6'>
+														<h6 class="comment-name by-author text-info">
+															{{ commentaire.user.nom }}
+															{{ commentaire.user.prenom }}
+														</h6>
+													</div>
+													<div class="star-rating col-md-6" data-rating="{{ commentaire.note }}">
+														{% for i in range(1, 5) %}
+															{% if i <= commentaire.note %}
+																<i class="fas fa-star text-warning"></i>
+															{% else %}
+																<i class="far fa-star text-warning"></i>
+															{% endif %}
+														{% endfor %}
+													</div>
+												</div>
+												<span>{{ commentaire.createdAt|date('d/m/Y, H:i') }}</span>
+											</div>
+											<div class="comment-content">
+												{{ commentaire.message }}
+											</div>
+										</div>
+									</div>
+								</div>
+							{% endfor %}
+						</div>
+
+					</div>
+
+				</div>
+				<div class='col-md-2'></div>
 			</div>
-			{{ form_start(form) }}
-			{{ form_row(form.message, {'attr': {'class': 'form-control', 'placeholder': 'Votre commentaire'}}) }}
-			<div class="rating mt-3">
-				<input value="5" name="rate" id="star5" type="radio">
-				<label title="text" for="star5" class="fas fa-star"></label>
-				<input value="4" name="rate" id="star4" type="radio">
-				<label title="text" for="star4" class="fas fa-star"></label>
-				<input value="3" name="rate" id="star3" type="radio" checked="">
-				<label title="text" for="star3" class="fas fa-star"></label>
-				<input value="2" name="rate" id="star2" type="radio">
-				<label title="text" for="star2" class="fas fa-star"></label>
-				<input value="1" name="rate" id="star1" type="radio">
-				<label title="text" for="star1" class="fas fa-star"></label>
-			</div>
-			{{ form_row(form.note) }}
-			{{ form_row(form._token) }}
-			<button type="submit" class="btn btn-primary mt-3">Ajouter un commentaire</button>
-			{{ form_end(form) }}
-		</div>
-	</section>
-	{% block script %}
-		 <script>
-										document.addEventListener('DOMContentLoaded', (event) => {
-										    // Gérer la sélection de la note et mettre à jour le champ note caché
-										    const ratingInputs = document.querySelectorAll('.rating input');
-										    ratingInputs.forEach(input => {
-										        input.addEventListener('change', (event) => {
-										            const noteField = document.querySelector('input[name$="[note]"]');
-										            noteField.value = event.target.value;
-										        });
-										    });
-										});
-										
-										</script>
+		</section>
+		{% block script %}
+			 <script>
+					
+				document.addEventListener('DOMContentLoaded', (event) => {
+					
+				// Gérer la sélection de la note et mettre à jour le champ note caché
+					
+				const ratingInputs = document.querySelectorAll('.rating input');
+					
+				ratingInputs.forEach(input => {
+					
+				input.addEventListener('change', (event) => {
+					
+				const noteField = document.querySelector('input[name$="[note]"]');
+					
+				noteField.value = event.target.value;
+					
+				});
+					
+				});
+					
+				});
+																																																																			
+					
+				</script>
+		{% endblock %}
 	{% endblock %}
-{% endblock %}
+	
