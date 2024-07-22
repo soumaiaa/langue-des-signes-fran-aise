@@ -8,7 +8,6 @@
 			<h1>{{ quiz.titre.nom }}</h1>
 			<p>{{ quiz.description }}</p>
 		</div>
-
 		<div id="quiz-container" class="quiz-container" data-quiz-id="{{ quiz.id }}">
 			{% for question in quiz.questions %}
 				<div class="question" id="question-{{ question.id }}" style="display: none;">
@@ -18,112 +17,122 @@
 						</div>
 						<div class='col-md-6'>
 							<form class="answer-form" data-question-id="{{ question.id }}">
-								<ul>
+								<div>
 									{% for reponse in question.reponses %}
-										<li>
+										<div>
 											<label class="answer-label">
-												<input type="radio" name="reponse" value="{{ reponse.id }}">
+												<input type="radio" class="check-quiz" name="reponse" value="{{ reponse.id }}">
 												{{ reponse.reponse }}
 											</label>
-										</li>
+										</div>
 									{% endfor %}
-								</ul>
+								</div>
 							</form>
 						</div>
 					</div>
 				</div>
 			{% endfor %}
 		</div>
-
-		<button id="next-button" class="next-button">Suivant</button>
-		<div class="score-container">Score:
-			<span id="score">0</span>
+		<div class='score-button container-md d-flex justify-content-between'>
+			
+			<div class="score-container">Score:
+				<span class='vv' id="score">0</span>
+				/10
+			</div>
+			<div>
+				<button id="next-button" class="next-button">Suivant<svg class='svgquiz' viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M13 15L16 12M16 12L13 9M16 12H8M21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12Z" stroke="#ff9901" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path> </g></svg></button>
+			</div>
 		</div>
+		
+		{# <div class="result-box">
+						          <div class="heading-primary"><span id="score">0</span></div>
+						          <p class="result">/10</p>
+						        </div> #}
 	</section>
 {% endblock %}
 
 {% block script %}
 	 <script>
-					       document.addEventListener("DOMContentLoaded", function () {
-				    const currentCategoryId = {{ category.id }};
-				    const userId = {{ user.id }};
-				    const quizId = document.getElementById('quiz-container').dataset.quizId;
-				    let currentQuestionIndex = 0;
-				    const questions = document.querySelectorAll('.question');
-				    const nextButton = document.getElementById('next-button');
-				    let score = 0;
-				
-				    function showQuestion(index) {
-				        questions.forEach((question, idx) => {
-				            if (idx === index) {
-				                question.style.display = 'block';
-				                setTimeout(() => {
-				                    question.classList.add('active');
-				                }, 10);
-				            } else {
-				                question.classList.remove('active');
-				                setTimeout(() => {
-				                    question.style.display = 'none';
-				                }, 500); // Duration of the transition
-				            }
-				        });
-				    }
-					//   Automatically change question every 20 seconds
-			        // setInterval(() => {
-			        //     if (currentQuestionIndex < questions.length - 1) {
-			        //         currentQuestionIndex++;
-			        //         showQuestion(currentQuestionIndex);
-			        //     }
-			        // }, 20000); 
-				    function checkAnswerAndProceed() {
-				        const currentForm = questions[currentQuestionIndex].querySelector('.answer-form');
-				        const formData = new FormData(currentForm);
-				        const reponseId = formData.get('reponse');
-				
-				        fetch(`/quiz/check-answer`, {
-				            method: 'POST',
-				            body: new URLSearchParams({
-				                'reponseId': reponseId,
-				                'categoryId': currentCategoryId,
-				                'userId': userId,
-				                'score': score
-				            })
-				        })
-				        .then(response => response.json())
-				        .then(data => {
-				            if (data.correct) {
-				                score++;
-				                document.getElementById('score').textContent = score;
-				            }
-				
-				            if (currentQuestionIndex < questions.length - 1) {
-				                currentQuestionIndex++;
-				                showQuestion(currentQuestionIndex);
-				            } else {
-				                // Save the final score and redirect to results page
-				                fetch(`/quiz/save-score`, {
-				                    method: 'POST',
-				                    body: new URLSearchParams({
-				                        'userId': userId,
-				                        'quizId': quizId,
-				                        'score': score
-				                    })
-				                })
-				                .then(() => {
-				                    // Redirect to results page with categoryId included
-				                    window.location.href = `/quiz/${userId}/${currentCategoryId}/results`;
-				                });
-				            }
-				        });
-				    }
-				
-				    nextButton.addEventListener('click', () => {
-				        checkAnswerAndProceed();
-				    });
-				
-				    // Show the first question initially
-				    showQuestion(currentQuestionIndex);
-				});
-				
-					    </script>
+								document.addEventListener("DOMContentLoaded", function () {
+							    const currentCategoryId = {{ category.id }};
+							    const userId = {{ user.id }};
+							    const quizId = document.getElementById('quiz-container').dataset.quizId;
+							    let currentQuestionIndex = 0;
+							    const questions = document.querySelectorAll('.question');
+							    const nextButton = document.getElementById('next-button');
+							    let score = 0;
+							
+							    function showQuestion(index) {
+							        questions.forEach((question, idx) => {
+							            if (idx === index) {
+							                question.style.display = 'block';
+							                setTimeout(() => {
+							                    question.classList.add('active');
+							                }, 10);
+							            } else {
+							                question.classList.remove('active');
+							                setTimeout(() => {
+							                    question.style.display = 'none';
+							                }, 500); // Duration of the transition
+							            }
+							        });
+							    }
+								//   Automatically change question every 20 seconds
+						        // setInterval(() => {
+						        //     if (currentQuestionIndex < questions.length - 1) {
+						        //         currentQuestionIndex++;
+						        //         showQuestion(currentQuestionIndex);
+						        //     }
+						        // }, 20000); 
+							    function checkAnswerAndProceed() {
+							        const currentForm = questions[currentQuestionIndex].querySelector('.answer-form');
+							        const formData = new FormData(currentForm);
+							        const reponseId = formData.get('reponse');
+							
+							        fetch(`/quiz/check-answer`, {
+							            method: 'POST',
+							            body: new URLSearchParams({
+							                'reponseId': reponseId,
+							                'categoryId': currentCategoryId,
+							                'userId': userId,
+							                'score': score
+							            })
+							        })
+							        .then(response => response.json())
+							        .then(data => {
+							            if (data.correct) {
+							                score++;
+							                document.getElementById('score').textContent = score;
+							            }
+							
+							            if (currentQuestionIndex < questions.length - 1) {
+							                currentQuestionIndex++;
+							                showQuestion(currentQuestionIndex);
+							            } else {
+							                // Save the final score and redirect to results page
+							                fetch(`/quiz/save-score`, {
+							                    method: 'POST',
+							                    body: new URLSearchParams({
+							                        'userId': userId,
+							                        'quizId': quizId,
+							                        'score': score
+							                    })
+							                })
+							                .then(() => {
+							                    // Redirect to results page with categoryId included
+							                    window.location.href = `/quiz/${userId}/${currentCategoryId}/results`;
+							                });
+							            }
+							        });
+							    }
+							
+							    nextButton.addEventListener('click', () => {
+							        checkAnswerAndProceed();
+							    });
+							
+							    // Show the first question initially
+							    showQuestion(currentQuestionIndex);
+							});
+							
+								    </script>
 {% endblock %}

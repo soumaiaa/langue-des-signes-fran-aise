@@ -476,16 +476,9 @@
 			</div>
 		</div>
 	</section>	
-	  <div class="cookie-consent">
-            <p>Ce site utilise des cookies pour améliorer l'expérience utilisateur.</p>
-            <form action="{{ path('consent_page') }}" method="post">
-                <button type="submit">J'accepte</button>
-            </form>
-        </div>
+	 
 	{% block script %}
 <script>
-//////////////////////////pour cookies ////////////////////////
-
 /////////////////////////////////////////////////////////
 $(document).ready(function() {
     // Gestion des points pour le carrousel horizontal
@@ -501,6 +494,19 @@ $(document).ready(function() {
         $('#point' + (newIndex + 1)).addClass('pointActive');
     });
 });
+//////////////////////////pour cookies ////////////////////////
+
+window.axeptioSettings= {
+clientId:"669e11ee764834a5ff3d1c74",
+cookiesVersion:"github/soumaiaa/langue-des-signes-fran-aise-fr-EU",
+};
+
+(function(d,s) {
+var t = d.getElementsByTagName(s)[0],e = d.createElement(s);
+e.async = true;e.src = "//static.axept.io/sdk.js";
+t.parentNode.insertBefore(e, t);
+})(document, "script");
+
 </script>
 	{% endblock %}
 {% endblock %}

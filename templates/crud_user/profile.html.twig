@@ -1,62 +1,9 @@
-{% extends 'base.html.twig' %}
+{# {% extends 'base.html.twig' %}
 
 {% block title %}User
 {% endblock %}
 
 {% block body %}
-
-	{# <section class='backProfile'>
-		<h1 class='text-center py-4'>PROFILE</h1>
-		<div class='row py-5 divProfile'>
-			<div class='col-md-6 text-center'>
-				{% if user.genre.genre %}
-					<img class="w-50 avatarProfile" src="{{ asset('assets/img/' ~ user.genre.genre ~ '.avif') }}"/>
-				{% else %}
-					<img class="imageAvatar" src="{{ asset('assets/img/iconprofile.svg') }}"/>
-				{% endif %}
-
-			</div>
-			<div class='col-md-6 text-center '>
-				<h3>{{ user.nom|upper }}</h3>
-				<hr class='hrProfile mx-5'>
-				<h3>{{ user.prenom|capitalize }}</h3>
-				<hr class='hrProfile mx-5'>
-				<h3>
-					<svg class='svgGenre' width="80" height="80" viewbox="0 0 90 90" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-						<rect width="80" height="80" fill="url(#pattern0_102_3)"/>
-						<defs>
-							<pattern id="pattern0_102_3" patterncontentunits="objectBoundingBox" width="1" height="1">
-								<use xlink:href="#image0_102_3" transform="matrix(-0.0111111 0 0 -0.0111111 1 1)"/>
-							</pattern>
-							<image id="image0_102_3" width="80" height="80" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFoAAABaCAYAAAA4qEECAAAACXBIWXMAAAsTAAALEwEAmpwYAAAFgElEQVR4nO2c34tVVRTHPzNzSydnpix7iLCSQCsIegokH4qKySzIfr+llWPZHxD0DwRhjTWaDZT9DnqJyhztJzWVlqOWTBLoS5GWZVkkNkY1NzasgcvlrH3OPvfMvXefuz6w4XLv3mef9T3nrL322vtcMAzDMAzDMAzDMNqGM4BNwB9AtaBiJPBMgQKb0ArdwF8m9OxjQjcRcx1NohcYAX43H916TgfetsGwvUS28K5JIpvQTRLZhA5gLjCWIqbvdyPjnbw1ReQdcjE6TuiLgXXAa8A+4DfgH5n1/SDfvQCsBhYVcCfPkfodIXQPcDfwGTAd4D9d3Q+B24BKAyJ3hNDXA98WMMHYD1wlIm8PFLnUQvfOwpTZ3eGHcohcWqEXALsLFjlL0UQupdALgANtJnLphJ4LfJlBFBddbARuAJYA82T1ZDEwCDwFfF+gyCiJqONEyuYUQY4Aa+oiCF+kcq9cFN8xD2UQGbmw9W3dBY2Oa1MEcROL/hzH7QPeSBkgXTSSdXA+KWWzfBfd6scBjxgbpU4jx3/Cc/yvMz4lji4pUXKnR4Tt4gYaxYnzuqefW+kAPlGM/xEYKLCfPo/P/oCSc5FnWr12Fvpb7fHVvtxI9Ax5IoyK587M67OdG/pO6dNFKaXlJcVoN6on4cTfC0wAy3L2+aTS54uUmAnF6JuV+uvqHvfHAyKGGQaVPr8ics4BTlN+O6oYfZlSPykHMg6cHZjTTurzMBFzrqQoNaFPKkbPV+qfUOrvAc7KeE69yjFOESlzgM/FCJeLSOJPxWg34IUIXZW+tAtayzylvVupiZJNNUYsVOpoEYAL+0Ji7pmyPsN5LVHaumWx6LiuLj6+Qqm3O3AwdP7+LY/Qrs+rU85tuWcqHhUuxp2sM2JQqTuqGD2ccnyt3Yy/7sqRJXyVyLgrwYhHAmdqR1L8rRP7TY/Yt3smLD8rbR4kMsYTjNim1D0f+Fcx/P6UfuZLPiSp7XtKG3enHyvDFHyRYvhxz7RZW5U+Kj7Zxyql7X/ABUqbJB/vbo6oeEAx/JhnBrcyJeHvS5NWPBm5+5Q2DyfUdftGouIVxehRTxv3OH/hEfu5FLHXK+2ezbias7/BhYWWsE8x+qaUdsvkcdfE3iazzCRWKG1c8imJy+t88zVESNJAU/XkLmp51CP0zMwviYVKfedSkjivpo571SJKTilGD2Ro6/ztxx6hpwJzF27jo7aL1P3+qXyOEi1J1J+x/YDHX2vC9QcmibolJeo260SLtnFlccAxXBbuI2XGl8QlSp+/KPV7MoSNbc9exejlgcfpEZ9dmy95KHAw1C5MKdji2ZuRhyuBXfKoa3H400qfL1NiVnkigErOY3Z58tMVWRlJ6tMt/JaWCz3bB9bMQn9rlb6m5VxKzfuejFx/gf2cCfyk9BVd7iIPK5uwxas75Y2qO+gAemTwqiplpIBNi0nbaGfKZIy5i7wsTcldbM25r865i3caXMoqFW4F/KBHkKok7YcyRiMVGfg0n1z7tHSUyGnv8VVrymGJhW8ELpVQrk8+r5DftBCutuzMuHu/LemVXLLLYfwKPJZiTKjI1YLKN7FPq0cDXq5plcg7Yxe5y7MzqF7sLCIfTBkgQ8u0+ORo3UWWLVu1YmcReUzqLfWswoSUybJFF8MZBAx9gb0HuAV4N8dL9OMyGSldnNyo3x1LebTdloB7ZAF2QvLZbuD9W5bF9kgWbsizH49O/yucHfI2rDGLYpvITRDbRG4QE7oJmOtoAjYYliC8M4SRAiYsG0xNP92enUchU/ATMf/1QrOEnsroEnxiT5Vxylw0zwf4XU3sLS047+joE7GnxAUMZ0j8b5C6UyKytvnFSCDUx0b9lziGYRiGYRiGYdBS/ge61X+gUUrIMQAAAABJRU5ErkJggg=="/>
-						</defs>
-					</svg>
-
-					{{ user.genre.genre }}
-				</h3>
-			</div>
-		</div>
-		<hr class='hrProfile'>
-		<div class='text-center'>
-			<div class='d-flex justify-content-center  align-items-center'>
-				<a class='text-center' href="{{ path('app_home')}}">
-					<img class="h-75 " src="{{ asset('assets/img/email.png') }}">
-				</a>
-				<h1 class='m-3'>{{ user.email }}</h1>
-			</div>
-		</div>
-		<div class="text-center row py-5">
-
-			<div class='col-6'>
-				<button class='btn w-75'>
-					<a class='modifier' href="{{ path('app_crud_user_edit', {'id': user.id}) }}">Modifier</a>
-				</button>
-			</div>
-			<div class='col-6'>
-				{{ include('crud_user/_delete_form.html.twig') }}
-			</div>
-		</div>
-	</section> #}
 	<section class='backModifier'>
 	<div class='col-md-3'></div>
 	<div class='col-md-9'>
@@ -200,4 +147,4 @@ document.addEventListener("DOMContentLoaded", function() {
 
 							 </script>
 	{% endblock %}
-{% endblock %}
+{% endblock %} #}

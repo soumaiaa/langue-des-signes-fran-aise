@@ -48,9 +48,8 @@
 
 {% block body %}
 	<section class='container-md'>
-		<h1 class='mt-5'>Résultat du Quiz</h1>
-		<p>Votre score :
-			{{ score }}/10</p>
+		<h1 class='mt-5 vv'>Résultat du Quiz</h1>
+	
 		{% if score < 5 %}
 			<div class="pb-5 results-summary-container">
 				<div class="results-summary-container__result">
@@ -114,7 +113,7 @@
 		{% endif %}
 
 		{% if usersScores is not empty %}
-			<h2>TOP 10</h2>
+			<h2 class='vv'>TOP 10</h2>
 			<div class="row py-5">
 
 				{% for userScore in usersScores %}
