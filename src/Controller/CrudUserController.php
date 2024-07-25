@@ -18,7 +18,8 @@ use Symfony\Component\Routing\Attribute\Route;
 class CrudUserController extends AbstractController
 {
     #[Route('/{id}/Profile', name: 'app_profile', methods: ['GET', 'POST'])]
-    public function edit(Request $request, User $user, FileUploader  $fileUploader, EntityManagerInterface $entityManager, UserPasswordHasherInterface $passwordHasher): Response
+    public function edit(Request $request, User $user, FileUploader  $fileUploader,
+     EntityManagerInterface $entityManager, UserPasswordHasherInterface $passwordHasher): Response
     {
         $form = $this->createForm(UserType::class, $user);
         $form->handleRequest($request);

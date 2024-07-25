@@ -7,54 +7,6 @@
 	<section class='backRegister'>
 		<div class='container-md'>
 			<div class='row'>
-				{# <div class='col-md-6 registerForm p-3 my-5 text-white'> #}
-					{# <form method="post">
-						{% if error %}
-							<div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
-						{% endif %}
-
-						{% if app.user %}
-							<div class="mb-3">
-								Déja connecter avec
-								{{ app.user.userIdentifier }},
-								<a class='vv' href="{{ path('app_logout') }}">Déconnecter</a>
-							</div>
-						{% endif %}
-
-						<h1 class="h3 mb-3 font-weight-normal text-center">Connection</h1>
-						<label class='label' for="inputEmail">Email:
-						</label>
-						<input class='input inputEmail' type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control" autocomplete="email" required autofocus>
-						<svg class='iconeConnection' width="44" height="47" viewbox="0 0 44 47" fill="none" xmlns="http://www.w3.org/2000/svg">
-							<path d="M15.125 19.8283H28.875C29.6347 19.8283 30.25 19.171 30.25 18.3595V16.8908C30.25 16.0793 29.6347 15.4221 28.875 15.4221H15.125C14.3653 15.4221 13.75 16.0793 13.75 16.8908V18.3595C13.75 19.171 14.3653 19.8283 15.125 19.8283ZM13.75 27.172C13.75 27.9835 14.3653 28.6407 15.125 28.6407H28.875C29.6347 28.6407 30.25 27.9835 30.25 27.172V25.7033C30.25 24.8918 29.6347 24.2345 28.875 24.2345H15.125C14.3653 24.2345 13.75 24.8918 13.75 25.7033V27.172ZM22 38.2913C20.5889 38.2913 19.1778 37.8268 17.973 36.8969L0 23.0283V42.5938C0 45.0273 1.8468 47 4.125 47H39.875C42.1532 47 44 45.0273 44 42.5938V23.0283L26.027 36.8969C24.8222 37.8259 23.4111 38.2913 22 38.2913ZM42.4196 14.9585C41.6591 14.3214 40.938 13.722 39.875 12.8646V8.81273C39.875 6.37921 38.0282 4.40651 35.75 4.40651H29.0855C28.8243 4.20455 28.5811 4.01545 28.3087 3.80432C26.8641 2.67798 23.9937 -0.0318455 22 0.000283226C20.0063 -0.0318455 17.1368 2.67798 15.6913 3.80432C15.4189 4.01545 15.1757 4.20455 14.9145 4.40651H8.25C5.9718 4.40651 4.125 6.37921 4.125 8.81273V12.8646C3.06195 13.7211 2.34094 14.3214 1.58039 14.9585C1.0881 15.3706 0.690005 15.8969 0.416207 16.4976C0.142409 17.0982 8.47177e-05 17.7576 0 18.4256L0 19.4033L8.25 25.7693V8.81273H35.75V25.7693L44 19.4033V18.4256C44 17.0726 43.4173 15.7938 42.4196 14.9585Z" fill="#FF9901"/>
-						</svg>
-
-						<label class='labelPassword' for="inputPassword">Mot de passe:
-						</label>
-						<div class="input-field position-relative">
-							<input class='input' type="password" name="password" id="inputPassword" class="form-control" autocomplete="current-password" required>
-							<svg class='iconeConnection motDePasseSvg' width="46" height="46" viewbox="0 0 46 46" fill="none" xmlns="http://www.w3.org/2000/svg">
-								<path d="M41.0714 20.125H38.6071V13.6562C38.6071 6.12734 31.6045 0 23 0C14.3955 0 7.39286 6.12734 7.39286 13.6562V20.125H4.92857C2.20759 20.125 0 22.0566 0 24.4375V41.6875C0 44.0684 2.20759 46 4.92857 46H41.0714C43.7924 46 46 44.0684 46 41.6875V24.4375C46 22.0566 43.7924 20.125 41.0714 20.125ZM30.3929 20.125H15.6071V13.6562C15.6071 10.0895 18.9237 7.1875 23 7.1875C27.0763 7.1875 30.3929 10.0895 30.3929 13.6562V20.125Z" fill="#FF9901"/>
-							</svg>
-						</div>
-
-						<input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
-
-						<div class="checkbox mb-3 cont">
-							<label>
-								<input type="checkbox" name="_remember_me">
-								<span class="checkmark"></span>
-								Se souvenir de moi
-
-							</label>
-						</div>
-						<div class='text-center my-5'>
-							<button class="btn btn-lg " type="submit">
-								Connecter
-							</button>
-						</div>
-					</form> #}
-				{# </div> #}
 				<div class='col-md-6'>
 					<div class="section">
 						<div class="container">
@@ -84,8 +36,7 @@
 																<div class="form-group">
 																	<input class='form-style' type="email" placeholder="Email" value="{{ last_username }}" autocomplete="off" name="email" id="inputEmail" autocomplete="email" required autofocus>
 																	<i class="input-icon uil uil-at"></i>
-																	{# <input type="email" name="logemail" class="" placeholder="Your Email" id="logemail" autocomplete="off"> #}
-
+																	
 																</div>
 																<div class="form-group mt-2">
 																	<input class='form-style' type="password" name="password" placeholder="Mot de Passe" id="inputPassword" class="form-control" autocomplete="current-password" autocomplete="off" required>
@@ -93,13 +44,6 @@
 																	<i class="input-icon uil uil-lock-alt"></i>
 
 																</div>
-																{# <div class="checkbox mb-3">
-																	<label>
-																		<input type="checkbox" name="_remember_me">
-
-																		Se souvenir de moi
-																	</label>
-																</div> #}
 																<div class="my-4 ">
 																<label>
 																	<input type="checkbox" class="check" name="_remember_me"> Se souvenir de moi
@@ -110,7 +54,8 @@
 																<button class="btn btn-lg " type="submit">
 																	Connecter
 																</button>
-																
+																<p class='pt-2'>Première connexion ? </p>
+																<a class='vv' href="{{ path('app_register') }}">créer voutre compte</a>
 															</form>
 														</div>
 													</div>

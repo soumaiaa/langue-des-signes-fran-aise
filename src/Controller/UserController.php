@@ -2,27 +2,20 @@
 
 namespace App\Controller;
 
-use App\Entity\User;
-use App\Form\RegistrationFormType;
-use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\Security\Csrf\CsrfToken;
-use Symfony\Component\Security\Csrf\CsrfTokenManagerInterface;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 
 class UserController extends AbstractController
 {
     #[Route(path: '/login', name: 'app_login')]
-    public function login(Request $request, AuthenticationUtils $authenticationUtils,UserPasswordHasherInterface $userPasswordHasher, EntityManagerInterface $entityManager, CsrfTokenManagerInterface $csrfTokenManager): Response
+    public function login( AuthenticationUtils $authenticationUtils): Response
     {
          
-        // if ($this->getUser()) {
-        //     return $this->redirectToRoute('target_path');
-        // }
+        if ($this->getUser()) {
+            return $this->redirectToRoute('target_path');
+        }
 	
         // get the login error if there is one
         $error = $authenticationUtils->getLastAuthenticationError();

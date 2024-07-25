@@ -3,13 +3,11 @@
 namespace App\Controller;
 
 use App\Entity\Commentaire;
-use App\Entity\User;
 use App\Form\CommentaireType;
 use App\Repository\CategoryRepository;
 use App\Repository\CoursRepository;
 use App\Repository\CommentaireRepository;
 use App\Repository\UserRepository;
-use DateTimeImmutable;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -51,7 +49,7 @@ class CoursController extends AbstractController
 
            // Récupérer les cours et les commentaires de la catégorie
            $cours = $coursRepository->findBy(['category' => $category]);
-           $commentaires = $commentaireRepository->findBy(['category' => $category]);
+           $commentaires = $commentaireRepository->findBy(['category' => $category], ['createdAt' => 'DESC']);
    
         // Calculer le grade_count et le grade_total
         $gradeCount = count($commentaires);
@@ -67,7 +65,6 @@ class CoursController extends AbstractController
         $commentaire = new Commentaire();
         $form = $this->createForm(CommentaireType::class, $commentaire);
 
-        // Gérer la soumission du formulaire
        // Gérer la soumission du formulaire
        if ($request->isMethod('POST') && $request->request->has($form->getName())) {
         $form->handleRequest($request);

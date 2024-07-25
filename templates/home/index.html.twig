@@ -5,12 +5,12 @@
 
 {% block body %}
 	{# //////////////////section1///////////// #}
-	  
-	<section class='backgroundIndex'>
-		<div class='container-md'>
+
+	<section class='backgroundIndex py-5'>
+		<main class='container-md'>
 			<div class='row'>
-				<div class=' col-12 col-md-6 p-4 backRaisonLsf text-white '>
-					<h1 class='mt-3 mb-2 titreSection1'>Raisons D’apprendre
+				<div class=' col-12 col-md-6 my-4 backRaisonLsf text-white '>
+					<h1 class='mt-5 mb-2 titreSection1'>Raisons D’apprendre
 						<br>
 						LSF:</h1>
 					<hr class='bold-hr'>
@@ -43,7 +43,7 @@
 										<i class="fas fa-quote-left verguile mt-3"></i>
 									</div>
 									<div class='col-md-10 mt-4'>
-										<h4>Renforcer Votre CV</h4>
+										<h4>Renforcer son CV</h4>
 										<p>Apprendre la langue des signes permet de communiquer plus facilement dans le monde professionnel. Mieux, cela représente un véritable atout sur votre CV, au même titre que maîtriser l’anglais, l’espagnol ou une autre langue vivante. Tout comme dans votre vie personnelle, dans le cadre du travail, vous pouvez être amené à échanger avec des collègues, des clients ou des prestataires sourds ou malentendants. Certains types de métiers sont davantage susceptibles d’accueillir un public malentendant.</p>
 									</div>
 								</div>
@@ -54,7 +54,7 @@
 										<i class="fas fa-quote-left verguile mt-3"></i>
 									</div>
 									<div class='col-md-10 mt-4'>
-										<h4>Renforcer Votre CV</h4>
+										<h4>Stimuler son cerveau</h4>
 										<p>Apprendre la langue des signes, au même titre qu’une deuxième langue vivante, présente l’avantage de stimuler et d’améliorer les capacités de votre cerveau. Le plurilinguisme offre de nombreux bienfaits cognitifs :</p>
 										<p>
 											<ul>
@@ -90,7 +90,7 @@
 							</div>
 
 						</div>
-						<div class="row justify-content-center align-items-end">
+						<div class="row justify-content-center align-items-end pb-4">
 							<div class="col-md-2 m-2 point pointActive" id="point1"></div>
 							<div class="col-md-2 m-2 point" id="point2"></div>
 							<div class="col-md-2 m-2 point" id="point3"></div>
@@ -103,7 +103,7 @@
 
 				<div class='col-md-6'></div>
 			</div>
-		</div>
+		</main>
 	</section>
 	{# //////////////////section2/////////////// #}
 	<section class='section2 py-5'>
@@ -114,10 +114,10 @@
 					<p class="card-description px-md-5">Vos compétences et votre personnalité sont des atouts précieux pour nous. Rejoignez-nous pour bénéficier de notre expertise et choisir le cours de langue des signes le plus adapté.</p>
 					{% if app.user %}
 						<a href="{{ path('app_cours', {userId: app.user.id})}}">
-							<button class="card-button">Rejoignez-nous</button>
+							<button class="card-button">Cours LSF</button>
 						</a>
 					{% else %}
-						<a href="{{ path('app_login') }}">
+						<a href="{{ path('app_register') }}">
 							<button class="card-button">Rejoignez-nous</button>
 						</a>
 					{% endif %}
@@ -222,15 +222,7 @@
 						</div>
 						<div class="modal-body">
 
-							<p>
-								<span class='lorem mt-2'>C</span>
-								La langue des signes française (
-								<span class='span'>LSF</span>
-								) est visuelle, en 3D, et donc très différente des langues orales.
-																																																																																																																																																																																																																																												 Pour beaucoup de personnes qui apprennent cette langue, la grammaire de la LSF est l’un des points les plus intéressants : en langue des signes, on fait vivre l’histoire !
-																																																																																																																																																																																																																																												 La première chose à savoir, c’est que la langue des signes n’est pas un mime : c’est une langue à part entière, avec des signes bien précis pour représenter des idées, mais aussi une syntaxe, des intonations, et plein de subtilités.
-							</p>
-
+							<p>La langue des signes française (<span class='vv'>LSF</span>) est visuelle, en 3D, et donc très différente des langues orales. Pour beaucoup de personnes qui apprennent cette langue, la grammaire de la LSF est l’un des points les plus intéressants : en langue des signes, on fait vivre l’histoire! La première chose à savoir, c’est que la langue des signes n’est pas un mime : c’est une langue à part entière, avec des signes bien précis pour représenter des idées, mais aussi une syntaxe, des intonations, et plein de subtilités.</p>
 							<h5 class='text'>Des langues créées naturellement</h5>
 							<p>Les langues des signes sont des langues naturelles : c’est-à-dire que ce ne sont pas des langues qui ont été créées artificiellement par l’humain (comme c’est le cas par exemple pour les langages informatiques ou pour le morse). Elles se sont développées au fil du temps, selon les interactions entre les personnes.
 							</p>
@@ -275,9 +267,7 @@
 						</div>
 						<div class="modal-body">
 
-							<p>
-								<span class='lorem mt-2'>L</span>a langue des signes française (<span class='span'>LSF</span>) est visuelle, en 3D, et donc très différente des langues orales.
-																																																																																																																																																																																																																																																																																																																																																																																																											 Pour beaucoup de personnes qui apprennent cette langue, la grammaire de la LSF est l’un des points les plus intéressants : en langue des signes, on fait vivre l’histoire !</p>
+							<p>La langue des signes française (<span class='span'>LSF</span>) est visuelle, en 3D, et donc très différente des langues orales. Pour beaucoup de personnes qui apprennent cette langue, la grammaire de la LSF est l’un des points les plus intéressants : en langue des signes, on fait vivre l’histoire !</p>
 
 							<p>On ne parle pas de « geste » mais de « signe », et il y a une bonne raison pour ça : 5 paramètres représentent un signe :</p>
 							<ul>
@@ -319,8 +309,6 @@
 									<span aria-hidden="true">&times;</span>
 								</button>
 							</div>
-
-
 						</div>
 						<div class="modal-body">
 
@@ -339,7 +327,7 @@
 							Pour beaucoup de personnes qui apprennent cette langue, la grammaire de la LSF est l’un des points les plus intéressants : en langue des signes, on fait vivre l’histoire !</p>
 						<h5 class='text'>VV : de quoi parle-t-on ?</h5>
 						<p>Le Visual Vernacular est un art visuel. On s’inspire du cinéma, des BD, des jeux vidéos, pour représenter une histoire visuellement, avec son corps.							
-																																																																																																																																																																																																																		Le VV n’est pas lié à une langue (pas même la langue des signes), c’est un art universel. Même si la langue des signes n’est pas universelle, cet art peut donc être compris de manière internationale. Ça signifie aussi que c’est un art qui peut être compris par tou·te·s, sourd·e·s comme entendant·e·s.</p>
+																																																																																																																																																																																																																																																												Le VV n’est pas lié à une langue (pas même la langue des signes), c’est un art universel. Même si la langue des signes n’est pas universelle, cet art peut donc être compris de manière internationale. Ça signifie aussi que c’est un art qui peut être compris par tou·te·s, sourd·e·s comme entendant·e·s.</p>
 						<p>Le Visual Vernacular (abrégé et signé « VV ») est un art visuel. On s’inspire du cinéma, des BD, des jeux vidéos, pour représenter une histoire visuellement, avec son corps.
 							<div class='text-center'>
 								Le VV n’est pas lié à une langue (pas même la langue des signes), c’est un art universel. Même si la langue des signes n’est pas universelle, cet art peut donc être compris de manière internationale. Ça signifie aussi que c’est un art qui peut être compris par tou·te·s, sourd·e·s comme entendant·e·s.</p>
@@ -367,32 +355,34 @@
 			<h1>Cours en Langue des Signes Française (LSF)</h1>
 			<p class="leader">Un quiz est proposé à la fin du chaque module, et un score suffisant est requis pour passer au module suivant.</p>
 			<div class="demo-card-wrapper">
-				{% for category in categories%}
-
+				{% for categoryGrade in categoryGrades %}
 					<div class="demo-card demo-card--step{{ loop.index }}">
 						<div class="head">
+
 							<div class="number-box">
 								<span>0{{ loop.index }}</span>
 							</div>
 							<h2>
 								<span class="small">cours</span>
-								{{category.nom}}
+								{{ categoryGrade.category.nom }}
 							</h2>
-							{# <div class="number-box">
-								<p class='d-flex grade'>
-									<i class="fas fa-comment-dots text-info mr-2"></i>
-									{{ gradeCount }}
-								</p>
-								<p class='d-flex grade'>
-									<i class="fas fa-star text-warning"></i>
-									{{ gradeTotal|number_format(1) }}/5
-								</p>
 
-							</div> #}
+							<div class="grade-total ms-md-4 ms-2 pt-3 px-2">
+								<div class='d-flex align-items-center'>
+									<p class='grade'>
+										<i class="fas fa-comment-dots text-info mr-2"></i>
+										{{ categoryGrade.gradeCount }}
+									</p><br>
+									<p class='grade'>
+										<i class="fas fa-star text-warning"></i>
+										{{ categoryGrade.gradeTotal|number_format(1) }}/5
+									</p>
+								</div>
+							</div>
 						</div>
 						<div class="body">
-							<p class='module-text'>{{category.description}}</p>
-							<img class='image-module' src="{{ asset(category.photo) }}" alt="Graphic">
+							<p class='module-text'>{{ categoryGrade.category.description }}</p>
+							<img class='image-module' src="{{ asset(categoryGrade.category.photo) }}" alt="Graphic">
 						</div>
 						<div></div>
 					</div>
@@ -400,6 +390,7 @@
 				{% endfor %}
 
 			</div>
+
 
 		</section>
 		<div class="text-center py-5">
@@ -427,14 +418,14 @@
 							<div class="pdf-badge">PDF</div>
 							<img class='imgCarte ' src="{{asset('assets/file/file1.jpg')}}" alt="">
 							<h3 class='p-2 titreFile'>Aide à la communication en LSF</h3>
-
-							<button class="Download-button">
-								<svg viewbox="0 0 640 512" width="20" height="16" xmlns="http://www.w3.org/2000/svg">
-									<path fill="white" d="M144 480C64.5 480 0 415.5 0 336c0-62.8 40.2-116.2 96.2-135.9c-.1-2.7-.2-5.4-.2-8.1c0-88.4 71.6-160 160-160c59.3 0 111 32.2 138.7 80.2C409.9 102 428.3 96 448 96c53 0 96 43 96 96c0 12.2-2.3 23.8-6.4 34.6C596 238.4 640 290.1 640 352c0 70.7-57.3 128-128 128H144zm79-167l80 80c9.4 9.4 24.6 9.4 33.9 0l80-80c9.4-9.4 9.4-24.6 0-33.9s-24.6-9.4-33.9 0l-39 39V184c0-13.3-10.7-24-24-24s-24 10.7-24 24V318.1l-39-39c-9.4-9.4-24.6-9.4-33.9 0s-9.4 24.6 0 33.9z"></path>
-								</svg>
-								<span>Telecharger</span>
-							</button>
-
+							<a class='lien-telechargement' href="assets/file/Aide-à-la-communication-en-LSF.pdf" target="_blank">
+								<button class="Download-button">
+									<svg viewbox="0 0 640 512" width="20" height="16" xmlns="http://www.w3.org/2000/svg">
+										<path fill="white" d="M144 480C64.5 480 0 415.5 0 336c0-62.8 40.2-116.2 96.2-135.9c-.1-2.7-.2-5.4-.2-8.1c0-88.4 71.6-160 160-160c59.3 0 111 32.2 138.7 80.2C409.9 102 428.3 96 448 96c53 0 96 43 96 96c0 12.2-2.3 23.8-6.4 34.6C596 238.4 640 290.1 640 352c0 70.7-57.3 128-128 128H144zm79-167l80 80c9.4 9.4 24.6 9.4 33.9 0l80-80c9.4-9.4 9.4-24.6 0-33.9s-24.6-9.4-33.9 0l-39 39V184c0-13.3-10.7-24-24-24s-24 10.7-24 24V318.1l-39-39c-9.4-9.4-24.6-9.4-33.9 0s-9.4 24.6 0 33.9z"></path>
+									</svg>
+									<span>Télécharger</span>
+								</button>
+							</a>
 
 						</div>
 					</div>
@@ -447,12 +438,14 @@
 							<img class='imgCarte' src="{{asset('assets/file/file2.jpg')}}" alt="">
 							<div class="pdf-badge">PDF</div>
 							<h3 class='p-2 titreFile'>Petit Guide LSF</h3>
-							<button class="Download-button">
-								<svg viewbox="0 0 640 512" width="20" height="16" xmlns="http://www.w3.org/2000/svg">
-									<path fill="white" d="M144 480C64.5 480 0 415.5 0 336c0-62.8 40.2-116.2 96.2-135.9c-.1-2.7-.2-5.4-.2-8.1c0-88.4 71.6-160 160-160c59.3 0 111 32.2 138.7 80.2C409.9 102 428.3 96 448 96c53 0 96 43 96 96c0 12.2-2.3 23.8-6.4 34.6C596 238.4 640 290.1 640 352c0 70.7-57.3 128-128 128H144zm79-167l80 80c9.4 9.4 24.6 9.4 33.9 0l80-80c9.4-9.4 9.4-24.6 0-33.9s-24.6-9.4-33.9 0l-39 39V184c0-13.3-10.7-24-24-24s-24 10.7-24 24V318.1l-39-39c-9.4-9.4-24.6-9.4-33.9 0s-9.4 24.6 0 33.9z"></path>
-								</svg>
-								<span>Telecharger</span>
-							</button>
+							<a class='lien-telechargement' href="assets/file/GuideLSF.pdf" target="_blank">
+								<button class="Download-button">
+									<svg viewbox="0 0 640 512" width="20" height="16" xmlns="http://www.w3.org/2000/svg">
+										<path fill="white" d="M144 480C64.5 480 0 415.5 0 336c0-62.8 40.2-116.2 96.2-135.9c-.1-2.7-.2-5.4-.2-8.1c0-88.4 71.6-160 160-160c59.3 0 111 32.2 138.7 80.2C409.9 102 428.3 96 448 96c53 0 96 43 96 96c0 12.2-2.3 23.8-6.4 34.6C596 238.4 640 290.1 640 352c0 70.7-57.3 128-128 128H144zm79-167l80 80c9.4 9.4 24.6 9.4 33.9 0l80-80c9.4-9.4 9.4-24.6 0-33.9s-24.6-9.4-33.9 0l-39 39V184c0-13.3-10.7-24-24-24s-24 10.7-24 24V318.1l-39-39c-9.4-9.4-24.6-9.4-33.9 0s-9.4 24.6 0 33.9z"></path>
+									</svg>
+									<span>Télécharger</span>
+								</button>
+							</a>
 						</div>
 					</div>
 				</div>
@@ -464,49 +457,51 @@
 							<img class='imgCarte' src="{{asset('assets/file/file3.jpg')}}" alt="">
 							<div class="pdf-badge">PDF</div>
 							<h3 class='p-2 titreFile'>Langue de Signes Française</h3>
-							<button class="Download-button">
-								<svg viewbox="0 0 640 512" width="20" height="16" xmlns="http://www.w3.org/2000/svg">
-									<path fill="white" d="M144 480C64.5 480 0 415.5 0 336c0-62.8 40.2-116.2 96.2-135.9c-.1-2.7-.2-5.4-.2-8.1c0-88.4 71.6-160 160-160c59.3 0 111 32.2 138.7 80.2C409.9 102 428.3 96 448 96c53 0 96 43 96 96c0 12.2-2.3 23.8-6.4 34.6C596 238.4 640 290.1 640 352c0 70.7-57.3 128-128 128H144zm79-167l80 80c9.4 9.4 24.6 9.4 33.9 0l80-80c9.4-9.4 9.4-24.6 0-33.9s-24.6-9.4-33.9 0l-39 39V184c0-13.3-10.7-24-24-24s-24 10.7-24 24V318.1l-39-39c-9.4-9.4-24.6-9.4-33.9 0s-9.4 24.6 0 33.9z"></path>
-								</svg>
-								<span>Telecharger</span>
-							</button>
+							<a class='lien-telechargement' href="assets/file/Langue-des-signes.pdf" target="_blank">
+								<button class="Download-button">
+									<svg viewbox="0 0 640 512" width="20" height="16" xmlns="http://www.w3.org/2000/svg">
+										<path fill="white" d="M144 480C64.5 480 0 415.5 0 336c0-62.8 40.2-116.2 96.2-135.9c-.1-2.7-.2-5.4-.2-8.1c0-88.4 71.6-160 160-160c59.3 0 111 32.2 138.7 80.2C409.9 102 428.3 96 448 96c53 0 96 43 96 96c0 12.2-2.3 23.8-6.4 34.6C596 238.4 640 290.1 640 352c0 70.7-57.3 128-128 128H144zm79-167l80 80c9.4 9.4 24.6 9.4 33.9 0l80-80c9.4-9.4 9.4-24.6 0-33.9s-24.6-9.4-33.9 0l-39 39V184c0-13.3-10.7-24-24-24s-24 10.7-24 24V318.1l-39-39c-9.4-9.4-24.6-9.4-33.9 0s-9.4 24.6 0 33.9z"></path>
+									</svg>
+									<span>Télécharger</span>
+								</button>
+							</a>
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
-	</section>	
-	 
+	</section>
+
 	{% block script %}
 <script>
-/////////////////////////////////////////////////////////
-$(document).ready(function() {
-    // Gestion des points pour le carrousel horizontal
-    $('.point').on('click', function() {
-        var index = $(this).index();
-        $('#carouselExampleControls').carousel(index);
-        $('.point').removeClass('pointActive');
-        $(this).addClass('pointActive');
-    });
-     $('#carouselExampleControls').on('slide.bs.carousel', function(e) {
-        var newIndex = $(e.relatedTarget).index();
-        $('.point').removeClass('pointActive');
-        $('#point' + (newIndex + 1)).addClass('pointActive');
-    });
-});
-//////////////////////////pour cookies ////////////////////////
-
-window.axeptioSettings= {
-clientId:"669e11ee764834a5ff3d1c74",
-cookiesVersion:"github/soumaiaa/langue-des-signes-fran-aise-fr-EU",
-};
-
-(function(d,s) {
-var t = d.getElementsByTagName(s)[0],e = d.createElement(s);
-e.async = true;e.src = "//static.axept.io/sdk.js";
-t.parentNode.insertBefore(e, t);
-})(document, "script");
-
-</script>
+	//////////////////////////pour cookies ////////////////////////
+	
+	window.axeptioSettings= {
+	clientId:"669e11ee764834a5ff3d1c74",
+	cookiesVersion:"github/soumaiaa/langue-des-signes-fran-aise-fr-EU",
+	};
+	
+	(function(d,s) {
+	var t = d.getElementsByTagName(s)[0],e = d.createElement(s);
+	e.async = true;e.src = "//static.axept.io/sdk.js";
+	t.parentNode.insertBefore(e, t);
+	})(document, "script");
+	
+	/////////////////////des points pour le carrousel horizontal//////////////////////////////
+	$(document).ready(function() {
+	    // Gestion des points pour le carrousel horizontal
+	    $('.point').on('click', function() {
+	        let index = $(this).index();
+	        $('#carouselExampleControls').carousel(index);
+	        $('.point').removeClass('pointActive');
+	        $(this).addClass('pointActive');
+	    });
+	     $('#carouselExampleControls').on('slide.bs.carousel', function(e) {
+	        let newIndex = $(e.relatedTarget).index();
+	        $('.point').removeClass('pointActive');
+	        $('#point' + (newIndex + 1)).addClass('pointActive');
+	    });
+	});												
+	</script>
 	{% endblock %}
 {% endblock %}

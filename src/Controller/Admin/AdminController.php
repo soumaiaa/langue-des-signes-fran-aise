@@ -49,10 +49,10 @@ class AdminController extends AbstractDashboardController
     {
         yield MenuItem::linkToDashboard('Dashboard', 'fa fa-home');
         yield MenuItem::linkToCrud('Genre', 'fa-solid fa-venus-mars', Genre::class);
-        yield MenuItem::linkToCrud('Category', 'fa-solid fa-venus-mars', Category::class);
-        yield MenuItem::linkToCrud('Cours', 'fa-solid fa-venus-mars', Cours::class);
-        yield MenuItem::linkToCrud('Quiz', 'fa-solid fa-venus-mars', Quiz::class);
-        yield MenuItem::linkToCrud('Questions', 'fa-solid fa-venus-mars', Questions::class);
-        yield MenuItem::linkToCrud('Reponse', 'fa-solid fa-venus-mars', Reponse::class);
+        yield MenuItem::linkToCrud('Category', 'fa-solid fa-list-alt', Category::class);
+        yield MenuItem::linkToCrud('Cours', 'fa-solid fa-book', Cours::class);
+        yield MenuItem::linkToCrud('Quiz', 'fa-solid fa-question-circle', Quiz::class);
+        yield MenuItem::linkToCrud('Questions', 'fa-solid fa-question', Questions::class);
+        yield MenuItem::linkToCrud('Reponse', 'fa-solid fa-reply', Reponse::class);
     }
 }

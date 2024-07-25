@@ -27,6 +27,5 @@ services:
     App\Service\FileUploader:
         arguments:
             $targetDirectory: '%brochures_directory%'
-    App\Service\CookieManager:
-        public: true
+  
            

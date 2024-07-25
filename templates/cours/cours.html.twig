@@ -157,30 +157,26 @@
 				<div class='col-md-2'></div>
 			</div>
 		</section>
-		{% block script %}
-			 <script>
+{% block script %}
+<script>
 											
-										document.addEventListener('DOMContentLoaded', (event) => {
+	document.addEventListener('DOMContentLoaded', (event) => {
 											
-										// Gérer la sélection de la note et mettre à jour le champ note caché
+	// Gérer la sélection de la note et mettre à jour le champ note caché
 											
-										const ratingInputs = document.querySelectorAll('.rating input');
+	const ratingInputs = document.querySelectorAll('.rating input');
 											
-										ratingInputs.forEach(input => {
+	ratingInputs.forEach(input => {
 											
-										input.addEventListener('change', (event) => {
+	input.addEventListener('change', (event) => {
 											
-										const noteField = document.querySelector('input[name$="[note]"]');
+	const noteField = document.querySelector('input[name$="[note]"]');
 											
-										noteField.value = event.target.value;
+	noteField.value = event.target.value;											
+	});											
+	});											
+	});																																																																									
 											
-										});
-											
-										});
-											
-										});
-																																																																									
-											
-										</script>
-		{% endblock %}
-	{% endblock %}
+</script>
+{% endblock %}
+{% endblock %}
