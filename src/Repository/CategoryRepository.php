@@ -21,17 +21,16 @@ class CategoryRepository extends ServiceEntityRepository
         parent::__construct($registry, Category::class);
     }
 
-
-    public function findNextCategory(int $currentCategoryId): ?Category
-    {
-        return $this->createQueryBuilder('c')
-            ->andWhere('c.id > :currentCategoryId')
-            ->setParameter('currentCategoryId', $currentCategoryId)
-            ->orderBy('c.id', 'ASC')
-            ->setMaxResults(1)
-            ->getQuery()
-            ->getOneOrNullResult();
-    }
+    // public function findNextCategory(int $currentCategoryId): ?Category
+    // {
+    //     return $this->createQueryBuilder('c')
+    //         ->andWhere('c.id > :currentCategoryId')
+    //         ->setParameter('currentCategoryId', $currentCategoryId)
+    //         ->orderBy('c.id', 'ASC')
+    //         ->setMaxResults(1)
+    //         ->getQuery()
+    //         ->getOneOrNullResult();
+    // }
 
 //    /**
 //     * @return Category[] Returns an array of Category objects

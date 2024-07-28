@@ -43,7 +43,7 @@ class RegistrationFormType extends AbstractType
             'attr' => [
                 'id' => 'photo',
                 'size' => '20000000',
-                'accept'=>'.pdf,.jpg,.doc,.docx,.png,.gif',
+                'accept'=>'.jpg,.png,.svg,.webp.avif,.gif,',
                 'name' => 'photo',
                 'type' => 'file'
             ],
@@ -52,7 +52,7 @@ class RegistrationFormType extends AbstractType
                  'mapped' => false,
                  'constraints' => [
                 new IsTrue([
-                    'message' => 'You should agree to our terms.',
+                    'message' => 'Vous devez accepter nos conditions.',
                     ]),
                 ],
             ])

@@ -35,10 +35,10 @@
 
 														{# {% else %} #}
 															{% if user.photo is not null %}
-															<img class="imageProfile image" src="{{ asset('uploads/brochures/' ~ user.photo.url ~ '') }}"/>
+															<img class="imageProfile image" src="{{ asset('uploads/brochures/' ~ user.photo.url ~ '') }}" alt="image profile"/>
 
 														{% else %}
-															<img class="imageProfile image" src="{{ asset('assets/img/' ~ user.genre.genre ~ '.avif') }}"/>
+															<img class="imageProfile image" src="{{ asset('assets/img/iconprofile.svg') }}"alt="icon profile" />
 														{% endif %}
 														{# </div> #}
 														<div class="card-info">

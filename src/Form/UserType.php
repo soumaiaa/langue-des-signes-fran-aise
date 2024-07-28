@@ -11,7 +11,6 @@ use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints\Length;
-use Symfony\Component\Validator\Constraints\NotBlank;
 
 class UserType extends AbstractType
 {
@@ -48,7 +47,7 @@ class UserType extends AbstractType
                 'attr' => [
                     'id' => 'photo',
                     'size' => '20000000',
-                    'accept'=>'.pdf,.jpg,.doc,.docx,.png,.gif',
+                    'accept'=>'.jpg,.png,.svg,.webp.avif,.gif,',
                     'name' => 'photo',
                     'type' => 'file'
                 ],

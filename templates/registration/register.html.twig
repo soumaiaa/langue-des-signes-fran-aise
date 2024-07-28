@@ -1,64 +1,66 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Register{% endblock %}
+{% block title %}Register
+{% endblock %}
 
 {% block body %}
-<section class='backRegister'>
-    <div class='container-md'>
-        <div class='row'>
-            <div class='col-md-6 mb-5 text-center text-white'>
-                <div class="card-3d-wrap mx-auto">
-                    <div class="card-3d-wrapper">
-                        <div class="card-connection">
-                            <div class="center-wrap">
-                                <div class="section">
-                                    <h4 class="pb-3">Créer Votre Compte</h4>
-                                    {{ form_errors(registrationForm) }}
-                                    {{ form_start(registrationForm) }}
-                                    <div class="form-group mt-2">
-                                        {{ form_row(registrationForm.photo, { 'attr': { 'class': 'upload-input', 'onchange': 'updateFileName()' }}) }}
-                                        <i class="input-icon fas fa-upload"></i>
-                                    </div>
-                                    <div class="form-group mt-2">
-                                        {{ form_row(registrationForm.nom, { label: ' ', 'attr': { 'class': 'form-style', 'placeholder': 'Votre Nom', 'autocomplete': 'off' }}) }}
-                                        <i class="input-icon uil uil-user"></i>
-                                    </div>
-                                    <div class="form-group mt-2">
-                                        {{ form_row(registrationForm.prenom, { label: ' ', 'attr': { 'class': 'form-style', 'placeholder': 'Votre Prénom', 'autocomplete': 'off' }}) }}
-                                        <i class="input-icon uil uil-user-plus"></i>
-                                    </div>
-                                    <div class="form-group mt-2">
-                                        {{ form_row(registrationForm.genre, { label: ' ', 'attr': { 'class': 'form-style', 'autocomplete': 'off' }}) }}
-                                        <i class="input-icon fas fa-venus-mars"></i>
-                                    </div>
-                                    <div class="form-group mt-2">
-                                        {{ form_row(registrationForm.email, { label: ' ', 'attr': { 'class': 'form-style', 'placeholder': 'Votre Email', 'autocomplete': 'off' }}) }}
-                                        <i class="input-icon uil uil-at"></i>
-                                    </div>
-                                    <div class="form-group mt-2">
-                                        {{ form_row(registrationForm.plainPassword, { label: ' ', 'attr': { 'class': 'form-style', 'placeholder': 'Votre Mot de Passe', 'autocomplete': 'off', 'id': 'password' }}) }}
-                                        <i class="input-icon uil uil-lock-alt"></i>
-                                        
-                                    </div>
-                                    <div class="pt-2">
-                                        <input type="checkbox" class="check" name="{{ field_name(registrationForm.agreeTerms) }}" value="1" id="accept-terms" required />
-                                        <label for="accept-terms">J'ai lu et j'accepte les
-                                            <a class='conditionUtilisation' href="#!" target="_blank">Conditions d'utilisation</a>
-                                        </label>
-                                    </div>
-                                    <div class='text-center'>
-                                        <button type="submit" class="btn mt-4">Inscription</button>
-                                    </div>
-                                    {{ form_end(registrationForm) }}
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
+	<section class='backRegister'>
+		<div class='container-md'>
+			<div class='row'>
+				<div class='col-md-6 mb-5 text-center text-white'>
+					<div class="card-3d-wrap mx-auto">
+						<div class="card-3d-wrapper">
+							<div class="card-connection">
+								<div class="center-wrap">
+									<div class="section">
+										<h4 class="pb-3">Créer Votre Compte</h4>
+										{{ form_errors(registrationForm) }}
+										{{ form_start(registrationForm) }}
+										<div class="form-group mt-2 ">
+											{# {{ form_widget(registrationForm.photo, { 'attr': { 'id': 'upload-input', 'class': 'upload-input', 'onchange': 'updateFileName(this)' }}) }} #}
+											{# <span id="file-name" class="file-name">Aucun fichier choisi</span> #}
+											{{ form_row(registrationForm.photo, { 'attr': { 'class': 'upload-input', 'onchange': 'updateFileName(this)' }}) }}
+											{# <i class="input-icon fas fa-upload d-sm-none d-md-block"></i> #}
+										</div>
+										<div class="form-group mt-2">
+											{{ form_row(registrationForm.nom, { label: ' ', 'attr': { 'class': 'form-style', 'placeholder': 'Votre Nom', 'autocomplete': 'off' }}) }}
+											<i class="input-icon uil uil-user"></i>
+										</div>
+										<div class="form-group mt-2">
+											{{ form_row(registrationForm.prenom, { label: ' ', 'attr': { 'class': 'form-style', 'placeholder': 'Votre Prénom', 'autocomplete': 'off' }}) }}
+											<i class="input-icon uil uil-user-plus"></i>
+										</div>
+										<div class="form-group mt-2">
+											{{ form_row(registrationForm.genre, { label: ' ', 'attr': { 'class': 'form-style', 'autocomplete': 'off' }}) }}
+											<i class="input-icon fas fa-venus-mars"></i>
+										</div>
+										<div class="form-group mt-2">
+											{{ form_row(registrationForm.email, { label: ' ', 'attr': { 'class': 'form-style', 'placeholder': 'Votre Email', 'autocomplete': 'off' }}) }}
+											<i class="input-icon uil uil-at"></i>
+										</div>
+										<div class="form-group mt-2">
+											{{ form_row(registrationForm.plainPassword, { label: ' ', 'attr': { 'class': 'form-style', 'placeholder': 'Votre Mot de Passe', 'autocomplete': 'off', 'id': 'password' }}) }}
+											<i class="input-icon uil uil-lock-alt"></i>
+
+										</div>
+										<div class="pt-2">
+											<input type="checkbox" class="check" name="{{ field_name(registrationForm.agreeTerms) }}" value="1" id="accept-terms" required/>
+											<label for="accept-terms">J'ai lu et j'accepte les
+												<a class='conditionUtilisation' href="#!" target="_blank">Conditions d'utilisation</a>
+											</label>
+										</div>
+										<div class='text-center'>
+											<button type="submit" class="btn mt-4">Inscription</button>
+										</div>
+										{{ form_end(registrationForm) }}
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
 {% endblock %}
-{% block script %}
-{% endblock %}
+{% block script %}{% endblock %}

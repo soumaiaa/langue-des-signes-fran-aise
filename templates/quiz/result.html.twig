@@ -94,16 +94,14 @@
 					</div>
 					<p class="paragraph">Félicitations ! Vous avez complété cette module.</p>
 				</div>
-			
+
 			</div>
 			<div class='text-center my-5'>
 				{% if nextCategory %}
 					<a href="{{ path('app_cours', {userId: user.id, categoryId: nextCategory.id}) }}" class="a">
 						<button class="buttonreslt">Passer au cours suivant
 						</button>
-					</a>
-					{# <a href="{{ path('app_cours', {userId: user.id, categoryId: nextCategory.id}) }}" class="btn btn-primary">Passer au cours suivant</a> #}
-
+					</a>	
 				{% else %}
 					<a href="{{ path('app_results_final', {userId: user.id, categoryId: categoryId}) }}" class="a">
 						<button class="buttonreslt">Voir les résultats finaux
@@ -126,20 +124,22 @@
 							{% else %}
 								<img class="imageAvatar mt-2" src="{{ asset('assets/img/iconprofile.svg') }}"/>
 							{% endif %}
-							<p class="other-user-name">{{ userScore.user.prenom }}
-								{{ userScore.user.nom }}</p>
+							<p class="other-user-name">{{ userScore.user.nom|upper }} {{ userScore.user.prenom|capitalize }}
+								</p>
+								
 						</div>
 						<div class="other-user-details ">
 							<div class="other-user-score-box ">
 								<p class="other-score-label">Score</p>
 								<p class="other-score-value">{{ userScore.getScore() }}/10</p>
+								{% if userScore.getTakenAt() is not null %}
+									<p>{{ userScore.getTakenAt()|date('d/m/Y, H:i') }}</p>
+							    {% endif %}
+								</div>
 							</div>
 						</div>
-					</div>
-
-
-				{% endfor %}
-			</div>
-		</section>
-	{% endif %}
-{% endblock %}
+					{% endfor %}
+				</div>
+			</section>
+		{% endif %}
+	{% endblock %}

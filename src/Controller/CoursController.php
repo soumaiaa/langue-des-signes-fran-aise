@@ -45,8 +45,6 @@ class CoursController extends AbstractController
                 throw $this->createNotFoundException('Aucune catégorie trouvée');
             }
         }
-
-
            // Récupérer les cours et les commentaires de la catégorie
            $cours = $coursRepository->findBy(['category' => $category]);
            $commentaires = $commentaireRepository->findBy(['category' => $category], ['createdAt' => 'DESC']);
@@ -78,8 +76,6 @@ class CoursController extends AbstractController
             return $this->redirectToRoute('app_cours', ['userId' => $user->getId(), 'categoryId' => $category->getId()]);
         }
     }
-
-
         return $this->render('cours/cours.html.twig', [
             'category' => $category,
             'cours' => $cours,

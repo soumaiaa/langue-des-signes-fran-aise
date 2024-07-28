@@ -11,7 +11,6 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Routing\Attribute\Route;
-use Symfony\Contracts\Translation\TranslatorInterface;
 use App\Service\FileUploader;
 class RegistrationController extends AbstractController
 {
@@ -30,6 +29,8 @@ class RegistrationController extends AbstractController
                     $form->get('plainPassword')->getData()
                 )
             );
+
+             // Utilisation de createMedia pour gérer le fichier photo
             $this->createMedia($form, 'photo', $fileUploader, $user);
 
             $entityManager->persist($user);
@@ -48,7 +49,8 @@ class RegistrationController extends AbstractController
             'registrationForm' => $form,
         ]);
     }
-    private function createMedia($form, string $formInput, FileUploader  $fileUploader, User $user)
+    private function createMedia($form, string $formInput, 
+    FileUploader  $fileUploader, User $user)
     {
         $mediaFile = $form->get($formInput)->getData();
         if ($mediaFile) {

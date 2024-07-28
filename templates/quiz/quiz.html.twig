@@ -21,7 +21,8 @@
 									{% for reponse in question.reponses %}
 										<div>
 											<label class="answer-label">
-												<input type="radio" class="check-quiz" name="reponse" value="{{ reponse.id }}">
+												<input type="radio" class="check-quiz" name="reponse" 
+												value="{{ reponse.id }}">
 												{{ reponse.reponse }}
 											</label>
 										</div>
@@ -48,76 +49,75 @@
 
 {% block script %}
 	 <script>
-								document.addEventListener("DOMContentLoaded", function () {
-							    const currentCategoryId = {{ category.id }};
-							    const userId = {{ user.id }};
-							    const quizId = document.getElementById('quiz-container').dataset.quizId;
-							    let currentQuestionIndex = 0;
-							    const questions = document.querySelectorAll('.question');
-							    const nextButton = document.getElementById('next-button');
-							    let score = 0;
+	document.addEventListener("DOMContentLoaded", function () {
+	const currentCategoryId = {{ category.id }};
+	const userId = {{ user.id }};
+	const quizId = document.getElementById('quiz-container').dataset.quizId;
+	let currentQuestionIndex = 0;
+	const questions = document.querySelectorAll('.question');
+	const nextButton = document.getElementById('next-button');
+	let score = 0;
 							
-							    function showQuestion(index) {
-							        questions.forEach((question, idx) => {
-							            if (idx === index) {
-							                question.style.display = 'block';				             
-							                    question.classList.add('active');						            
-							            } else {
-							                question.classList.remove('active');						            
-							                    question.style.display = 'none';      
-							            }
-							        });
-							    }
-								
-							    function checkAnswerAndProceed() {
-							        const currentForm = questions[currentQuestionIndex].querySelector('.answer-form');
-							        const formData = new FormData(currentForm);
-							        const reponseId = formData.get('reponse');
+	function showQuestion(index) {
+	    questions.forEach((question, idx) => {
+	        if (idx === index) {
+	            question.style.display = 'block';				             
+	                question.classList.add('active');						            
+	        } else {
+	            question.classList.remove('active');						            
+	                question.style.display = 'none';      
+	        }
+	    });
+	}
+	
+	function checkAnswerAndProceed() {
+	    const currentForm = questions[currentQuestionIndex].querySelector('.answer-form');
+	    const formData = new FormData(currentForm);
+	    const reponseId = formData.get('reponse');
+
+	    fetch(`/quiz/check-answer`, {
+	        method: 'POST',
+	        body: new URLSearchParams({
+	            'reponseId': reponseId,
+	            'categoryId': currentCategoryId,
+	            'userId': userId,
+	            'score': score
+	        })
+	    })
+	    .then(response => response.json())
+	    .then(data => {
+	        if (data.correct) {
+	            score++;
+	            document.getElementById('score').textContent = score;
+	        }		
+	        if (currentQuestionIndex < questions.length - 1) {
+	            currentQuestionIndex++;
+	            showQuestion(currentQuestionIndex);
+	        } else {
+	            // Save the final score and redirect to results page
+	            fetch(`/quiz/save-score`, {
+	                method: 'POST',
+	                body: new URLSearchParams({
+	                    'userId': userId,
+	                    'quizId': quizId,
+	                    'score': score
+	                })
+	            })
+	            .then(() => {
+	                // Redirect to results page with categoryId included
+	                window.location.href = `/quiz/${userId}/${currentCategoryId}/results`;
+	            });
+	        }
+	    });
+	}
 							
-							        fetch(`/quiz/check-answer`, {
-							            method: 'POST',
-							            body: new URLSearchParams({
-							                'reponseId': reponseId,
-							                'categoryId': currentCategoryId,
-							                'userId': userId,
-							                'score': score
-							            })
-							        })
-							        .then(response => response.json())
-							        .then(data => {
-							            if (data.correct) {
-							                score++;
-							                document.getElementById('score').textContent = score;
-							            }
+	nextButton.addEventListener('click', () => {
+	    checkAnswerAndProceed();
+	});
+
+	// Show the first question initially
+	showQuestion(currentQuestionIndex);
+});
 							
-							            if (currentQuestionIndex < questions.length - 1) {
-							                currentQuestionIndex++;
-							                showQuestion(currentQuestionIndex);
-							            } else {
-							                // Save the final score and redirect to results page
-							                fetch(`/quiz/save-score`, {
-							                    method: 'POST',
-							                    body: new URLSearchParams({
-							                        'userId': userId,
-							                        'quizId': quizId,
-							                        'score': score
-							                    })
-							                })
-							                .then(() => {
-							                    // Redirect to results page with categoryId included
-							                    window.location.href = `/quiz/${userId}/${currentCategoryId}/results`;
-							                });
-							            }
-							        });
-							    }
-							
-							    nextButton.addEventListener('click', () => {
-							        checkAnswerAndProceed();
-							    });
-							
-							    // Show the first question initially
-							    showQuestion(currentQuestionIndex);
-							});
-							
-								    </script>
+		</script>
 {% endblock %}

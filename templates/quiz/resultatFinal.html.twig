@@ -117,13 +117,14 @@
 									{% else %}
 										<img class="imageAvatar mt-2" src="{{ asset('assets/img/iconprofile.svg') }}"/>
 									{% endif %}
-									<p class="other-user-name">{{ userScore.user.prenom }}
-										{{ userScore.user.nom }}</p>
+									<p class="other-user-name">{{ userScore.user.nom|upper }} 
+									{{ userScore.user.prenom|capitalize }}</p>
 								</div>
 								<div class="other-user-details ">
 									<div class="other-user-score-box ">
 										<p class="other-score-label">Score</p>
 										<p class="other-score-value">{{ userScore.totalScore }}/30</p>
+										
 									</div>
 								</div>
 							</div>

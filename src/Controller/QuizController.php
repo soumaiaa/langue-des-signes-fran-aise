@@ -74,11 +74,9 @@ class QuizController extends AbstractController
 
         $user = $userRepository->find($userId);
         $quiz = $quizRepository->find($quizId);
-
         if (!$user || !$quiz) {
             return new JsonResponse(['status' => 'error', 'message' => 'Invalid user or quiz'], 400);
         }
-
         $score = new Score();
         $score->setUser($user);
         $score->setQuiz($quiz);
@@ -90,10 +88,9 @@ class QuizController extends AbstractController
         return new JsonResponse(['status' => 'success']);
     }
 
-  
-   
     #[Route('/quiz/{userId}/{categoryId}/results', name: 'app_final_results')]
-    public function results(int $userId, int $categoryId, UserRepository $userRepository,CategoryRepository $categoryRepository, ScoreRepository $scoreRepository): Response
+    public function results(int $userId, int $categoryId, UserRepository $userRepository,
+    CategoryRepository $categoryRepository, ScoreRepository $scoreRepository): Response
     {
         $user = $userRepository->find($userId);
         if (!$user) {
@@ -110,7 +107,7 @@ class QuizController extends AbstractController
         }
     // Logique pour obtenir la catégorie suivante
     $currentCategory = $categoryRepository->find($categoryId);
-    $nextCategory = $categoryRepository->findOneBy(['id' => $categoryId + 1]); // Par exemple, trouver la prochaine catégorie par ID
+    $nextCategory = $categoryRepository->findOneBy(['id' => $categoryId + 1]);
         // Récupérer tous les scores triés par score décroissant
         $usersScores = $scoreRepository->findBy([], ['score' => 'DESC'], 10);
 
@@ -145,7 +142,6 @@ class QuizController extends AbstractController
                 'totalScore' => $totalScore,
             ];
         }
-
         // Trier les utilisateurs par score total décroissant
         usort($usersScores, fn($a, $b) => $b['totalScore'] <=> $a['totalScore']);
 

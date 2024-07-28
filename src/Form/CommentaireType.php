@@ -19,11 +19,9 @@ class CommentaireType extends AbstractType
         ->add('message', TextareaType::class, [
             'label'=>' ',
         ])
-        ->add('note', HiddenType::class);
-   
-       
+        ->add('note', HiddenType::class);      
     }
-
+    
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([

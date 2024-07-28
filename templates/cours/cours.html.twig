@@ -15,7 +15,7 @@
 				<p>L’alphabet dactylologique est l’alphabet de la langue des signes française. Il est utilisé pour épeler les lettres, noms propres ou le début d’un mot. Cet abécédaire en LSF, réalisé en collaboration avec des personnes en situation de handicap, permet à tous, entendants comme sourds de s’initier à cet alphabet. C’est aussi tout un univers à découvrir et cette visualisation des lettres par des gestes permet de nouvelles approches pédagogiques.</p>
 				</div>
 				{% for cour in cours %}
-					<div class=" col-md-4 text-center">
+					<div class="mx-auto col-md-4 text-center">
 						<img class=" imgModule1 mt-2" src="{{ asset(cour.url) }}" alt="">
 					</div>
 				{% endfor %}
@@ -29,7 +29,6 @@
 					</button>
 				</a>
 			</div>
-
 		{% else %}
 			<div class='container-md'>
 				{% for cour in cours %}
@@ -42,7 +41,7 @@
 								<h1 class='card-2 text-center pt-2 pb-3 vv'>{{ cour.titre }}</h1>
 								<p class='card-3 p-md-3 '>{{ cour.contenu }}</p>
 								<div class="m-2 text-center pt-2 ">
-									<a class='card-4 px-5 py-2' href="{{ cour.video }}">
+									<a class='card-4 px-5 py-2' target='_blanc' href="{{ cour.video }}">
 										Regarder un vidéo
 									</a>
 								</div>
@@ -91,7 +90,6 @@
 								<label title="text" for="star1" class="fas fa-star"></label>
 							</div>
 							<div class=''>
-
 								{{ form_row(form.message, {'attr': {'class': 'form-control', 'label':' ', 'placeholder': 'Votre commentaire'}}) }}
 							</div>
 							{{ form_row(form._token) }}
@@ -150,13 +148,12 @@
 								</div>
 							{% endfor %}
 						</div>
-
 					</div>
-
 				</div>
 				<div class='col-md-2'></div>
 			</div>
 		</section>
+	</section>
 {% block script %}
 <script>
 											

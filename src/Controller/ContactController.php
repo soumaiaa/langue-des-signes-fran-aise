@@ -30,8 +30,5 @@ class ContactController extends AbstractController
           
             'form' => $form,
         ]);
-    }
-      
-    
-   
+    }   
 }
