@@ -2,9 +2,7 @@
 
 namespace App\Controller;
 
-use App\Entity\Category;
 use App\Entity\Score;
-use App\Entity\User;
 use App\Repository\CategoryRepository;
 use App\Repository\QuizRepository;
 use App\Repository\ReponseRepository;

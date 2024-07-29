@@ -94,7 +94,7 @@
 	            currentQuestionIndex++;
 	            showQuestion(currentQuestionIndex);
 	        } else {
-	            // Save the final score and redirect to results page
+	            // Sauvegarder le score final et rediriger vers la page des résultats
 	            fetch(`/quiz/save-score`, {
 	                method: 'POST',
 	                body: new URLSearchParams({
@@ -104,7 +104,7 @@
 	                })
 	            })
 	            .then(() => {
-	                // Redirect to results page with categoryId included
+	                // Rediriger vers la page des résultats avec l'ID de la catégorie inclus
 	                window.location.href = `/quiz/${userId}/${currentCategoryId}/results`;
 	            });
 	        }
@@ -115,7 +115,7 @@
 	    checkAnswerAndProceed();
 	});
 
-	// Show the first question initially
+	// Afficher la première question au départ
 	showQuestion(currentQuestionIndex);
 });
 							

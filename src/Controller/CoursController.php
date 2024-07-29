@@ -71,6 +71,7 @@ class CoursController extends AbstractController
             $commentaire->setUpdatedAt(new \DateTimeImmutable());
             $commentaire->setCreatedAt(new \DateTimeImmutable());
             $commentaire->setUser($user);
+            
             $entityManager->persist($commentaire);
             $entityManager->flush();
             return $this->redirectToRoute('app_cours', ['userId' => $user->getId(), 'categoryId' => $category->getId()]);

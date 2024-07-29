@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Home !
+{% block title %}Langue Des Signes Française
 {% endblock %}
 
 {% block body %}
@@ -114,7 +114,7 @@
 					<p class="card-description px-md-5">Vos compétences et votre personnalité sont des atouts précieux pour nous. Rejoignez-nous pour bénéficier de notre expertise et choisir le cours de langue des signes le plus adapté.</p>
 					{% if app.user %}
 						<a href="{{ path('app_cours', {userId: app.user.id})}}">
-							<button class="card-button">Cours LSF</button>
+							<button class="card-button"> Cours LSF</button>
 						</a>
 					{% else %}
 						<a href="{{ path('app_register') }}">
@@ -147,10 +147,10 @@
 											<div class="shape">
 												<div class="bd1 m-0 p-0">
 													<button type="button" class="btnModel1 btnModel" data-toggle="modal" data-target="#myModal1">
-														<p class='m-md-5 w-75 text-center'>
+														<h1 class='m-md-5 w-75 text-center'>
 															Comment fonctionne
 															<br>
-															(<span class='vv'>LSF</span>) ?</p>
+															(<span class='vv'>LSF</span>) ?</h1>
 													</button>
 												</div>
 											</div>
@@ -167,10 +167,10 @@
 											<div class="shape">
 												<div class="bd2 m-0 p-0">
 													<button type="button" class="btnModel2 btnModel" data-toggle="modal" data-target="#myModal2">
-														<p class='m-md-5 w-75 text-center'>Un signe,<br>
+														<h1 class='m-md-5 w-75 text-center'>Un signe,<br>
 															c’est plus qu’un
 															<br>
-															geste</p>
+															geste</h1>
 													</button>
 												</div>
 											</div>
@@ -187,10 +187,10 @@
 											<div class="shape">
 												<div class="bd3 m-0 p-0">
 													<button type="button" class="btnModel3 btnModel" data-toggle="modal" data-target="#myModal3">
-														<p class='m-md-5 w-75 text-center'>Visual
+														<h1 class='m-md-5 w-75 text-center'>Visual
 															<br>
 															Vernacular
-															<br>"<span class='vv2'>VV</span>"</p>
+															<br>"<span class='vv2'>VV</span>"</h1>
 													</button>
 												</div>
 											</div>

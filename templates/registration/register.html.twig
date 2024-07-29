@@ -10,17 +10,15 @@
 				<div class='col-md-6 mb-5 text-center text-white'>
 					<div class="card-3d-wrap mx-auto">
 						<div class="card-3d-wrapper">
-							<div class="card-connection">
-								<div class="center-wrap">
+							<div class="card-connection px-2 py-5">
+							
 									<div class="section">
 										<h4 class="pb-3">Créer Votre Compte</h4>
 										{{ form_errors(registrationForm) }}
 										{{ form_start(registrationForm) }}
 										<div class="form-group mt-2 ">
-											{# {{ form_widget(registrationForm.photo, { 'attr': { 'id': 'upload-input', 'class': 'upload-input', 'onchange': 'updateFileName(this)' }}) }} #}
-											{# <span id="file-name" class="file-name">Aucun fichier choisi</span> #}
 											{{ form_row(registrationForm.photo, { 'attr': { 'class': 'upload-input', 'onchange': 'updateFileName(this)' }}) }}
-											{# <i class="input-icon fas fa-upload d-sm-none d-md-block"></i> #}
+											<i class="input-icon fas fa-upload"></i>
 										</div>
 										<div class="form-group mt-2">
 											{{ form_row(registrationForm.nom, { label: ' ', 'attr': { 'class': 'form-style', 'placeholder': 'Votre Nom', 'autocomplete': 'off' }}) }}
@@ -46,7 +44,7 @@
 										<div class="pt-2">
 											<input type="checkbox" class="check" name="{{ field_name(registrationForm.agreeTerms) }}" value="1" id="accept-terms" required/>
 											<label for="accept-terms">J'ai lu et j'accepte les
-												<a class='conditionUtilisation' href="#!" target="_blank">Conditions d'utilisation</a>
+												<a class='conditionUtilisation' href="{{ path('terms_of_service')}}" target="_blank">Conditions d'utilisation</a>
 											</label>
 										</div>
 										<div class='text-center'>
@@ -54,7 +52,7 @@
 										</div>
 										{{ form_end(registrationForm) }}
 									</div>
-								</div>
+							
 							</div>
 						</div>
 					</div>

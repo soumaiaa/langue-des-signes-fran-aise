@@ -1,32 +1,3 @@
-{# {% extends 'base.html.twig' %}
-
-{% block title %}Résultats Finaux{% endblock %}
-
-{% block body %}
-    <h1>Résultats Finaux</h1>
-    
-    {% for winner in winners %}
-        <h2>Quiz {{ winner.quizId }}</h2>
-        <p>Score total le plus élevé : {{ winner.totalHighestScore }}</p>
-        
-        {% if winner.winner %}
-            <p>Gagnant : {{ winner.winner.prenom }} {{ winner.winner.nom }} avec un score de {{ winner.winner.highestScore }}</p>
-            
-            {% if winner.users is defined and winner.users|length > 0 %}
-                <h3>Liste des participants :</h3>
-                <ul>
-                    {% for user in winner.users %}
-                        <li>{{ user.prenom }} {{ user.nom }} - Score : {{ user.highestScore }}</li>
-                    {% endfor %}
-                </ul>
-            {% else %}
-                <p>Aucun participant trouvé pour ce quiz.</p>
-            {% endif %}
-        {% else %}
-            <p>Aucun gagnant trouvé pour ce quiz.</p>
-        {% endif %}
-    {% endfor %}
-{% endblock %} #}
 {% extends 'base.html.twig' %}
 
 {% block title %}Scores des Utilisateurs
