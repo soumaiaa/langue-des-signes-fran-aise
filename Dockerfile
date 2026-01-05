@@ -1,34 +1,29 @@
 FROM php:8.2-apache
 
-# Apache → dossier public Symfony
-ENV APACHE_DOCUMENT_ROOT /var/www/html/public
+# Apache → Symfony public/
+ENV APACHE_DOCUMENT_ROOT=/var/www/html/public
+RUN sed -ri 's!/var/www/html!${APACHE_DOCUMENT_ROOT}!g' /etc/apache2/sites-available/*.conf \
+ && sed -ri 's!/var/www/!${APACHE_DOCUMENT_ROOT}!g' /etc/apache2/apache2.conf /etc/apache2/conf-available/*.conf
 
-RUN sed -ri -e 's!/var/www/html!${APACHE_DOCUMENT_ROOT}!g' \
-    /etc/apache2/sites-available/*.conf \
- && sed -ri -e 's!/var/www/!${APACHE_DOCUMENT_ROOT}!g' \
-    /etc/apache2/apache2.conf /etc/apache2/conf-available/*.conf
-
-# Extensions PHP nécessaires
+# Extensions PHP
 RUN apt-get update && apt-get install -y \
-    libpq-dev \
-    unzip \
-    git \
- && docker-php-ext-install pdo pdo_pgsql
+    libpq-dev unzip git \
+ && docker-php-ext-install pdo pdo_pgsql \
+ && a2enmod rewrite \
+ && apt-get clean \
+ && rm -rf /var/lib/apt/lists/*
 
-# Activer rewrite
-RUN a2enmod rewrite
-
-# Copier projet
+# Projet Symfony
 WORKDIR /var/www/html
 COPY . .
 
 # Composer
 COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
 
-# Installer dépendances PROD uniquement
-RUN composer install --no-dev --optimize-autoloader
+# 🚨 IMPORTANT : désactiver scripts auto
+RUN composer install --no-dev --optimize-autoloader --no-scripts
 
-# Permissions Symfony
+# Permissions
 RUN chown -R www-data:www-data var vendor
 
 EXPOSE 80
