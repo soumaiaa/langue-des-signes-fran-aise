@@ -1,5 +1,9 @@
 FROM php:8.2-apache
 
+# 🔴 FIX MPM OBLIGATOIRE
+RUN a2dismod mpm_event mpm_worker || true \
+ && a2enmod mpm_prefork
+
 # Apache → Symfony public/
 ENV APACHE_DOCUMENT_ROOT=/var/www/html/public
 RUN sed -ri 's!/var/www/html!${APACHE_DOCUMENT_ROOT}!g' /etc/apache2/sites-available/*.conf \
@@ -24,8 +28,7 @@ COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
 RUN composer install --no-dev --optimize-autoloader --no-scripts
 
 # Créer var si absent + permissions
-RUN mkdir -p var \
- && chown -R www-data:www-data var vendor
+RUN mkdir -p var
 
 
 EXPOSE 80
