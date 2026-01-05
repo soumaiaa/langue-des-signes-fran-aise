@@ -11,5 +11,10 @@
       "src": "/(.*)",
       "dest": "/public/index.php"
     }
-  ]
+  ],
+  "env": {
+    "APP_ENV": "prod",
+    "APP_SECRET": "774dad1197d5f36a8e7614b70130e1da",
+    "DATABASE_URL": "postgresql://postgres:eobYqJTlHzKfdGCsLmDwQRPGygPxUAYr@shuttle.proxy.rlwy.net:27743/railway"
+  }
 }
