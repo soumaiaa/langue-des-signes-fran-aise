@@ -1,8 +1,7 @@
 # =========================
-# Dockerfile prêt pour Symfony 7 + PostgreSQL sur Railway
+# Symfony 7 + PostgreSQL Dockerfile fixe
 # =========================
 
-# Base image PHP + Apache
 FROM php:8.2-apache
 
 # -------------------------
@@ -10,7 +9,13 @@ FROM php:8.2-apache
 # -------------------------
 ENV APACHE_DOCUMENT_ROOT /var/www/html/public
 
-# Adapter la config Apache pour Symfony public/
+# -------------------------
+# Désactiver TOUS les MPM puis activer mpm_prefork
+# -------------------------
+RUN a2dismod mpm_event mpm_worker mpm_prefork || true \
+ && a2enmod mpm_prefork
+
+# Adapter la config Apache pour le dossier public/
 RUN sed -ri -e 's!/var/www/html!${APACHE_DOCUMENT_ROOT}!g' \
     /etc/apache2/sites-available/*.conf \
  && sed -ri -e 's!/var/www/!${APACHE_DOCUMENT_ROOT}!g' \
@@ -28,7 +33,7 @@ RUN apt-get update && apt-get install -y \
  && rm -rf /var/lib/apt/lists/*
 
 # -------------------------
-# Copier le projet Symfony
+# Copier projet Symfony
 # -------------------------
 WORKDIR /var/www/html
 COPY . .
@@ -39,12 +44,12 @@ COPY . .
 COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
 
 # -------------------------
-# Installer les dépendances Symfony en prod
+# Installer dépendances Symfony
 # -------------------------
 RUN composer install --no-dev --optimize-autoloader
 
 # -------------------------
-# Permissions pour Apache
+# Permissions Apache
 # -------------------------
 RUN chown -R www-data:www-data var vendor
 
@@ -54,6 +59,6 @@ RUN chown -R www-data:www-data var vendor
 EXPOSE 80
 
 # -------------------------
-# Lancer Apache (commande standard)
+# Lancer Apache
 # -------------------------
 CMD ["apache2-foreground"]
