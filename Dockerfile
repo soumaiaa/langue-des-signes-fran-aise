@@ -1,7 +1,7 @@
-# Utiliser PHP 8.2 avec Apache
+# Base image PHP + Apache
 FROM php:8.2-apache
 
-# Installer les extensions nécessaires
+# Installer les extensions nécessaires pour PostgreSQL
 RUN apt-get update && apt-get install -y \
     libpq-dev \
     unzip \
@@ -26,5 +26,5 @@ RUN chown -R www-data:www-data /var/www/html/var /var/www/html/vendor
 # Exposer le port 80
 EXPOSE 80
 
-# Lancer Apache en foreground
+# Lancer Apache
 CMD ["apache2-foreground"]
