@@ -1,40 +1,59 @@
+# =========================
+# Dockerfile prêt pour Symfony 7 + PostgreSQL sur Railway
+# =========================
+
+# Base image PHP + Apache
 FROM php:8.2-apache
 
-# Symfony public folder
+# -------------------------
+# Définir le dossier public Symfony
+# -------------------------
 ENV APACHE_DOCUMENT_ROOT /var/www/html/public
 
+# Adapter la config Apache pour Symfony public/
 RUN sed -ri -e 's!/var/www/html!${APACHE_DOCUMENT_ROOT}!g' \
     /etc/apache2/sites-available/*.conf \
  && sed -ri -e 's!/var/www/!${APACHE_DOCUMENT_ROOT}!g' \
     /etc/apache2/apache2.conf /etc/apache2/conf-available/*.conf
 
-# Désactiver tous les MPM et activer mpm_prefork
-RUN rm -f /etc/apache2/mods-enabled/mpm_*.load \
- && rm -f /etc/apache2/mods-enabled/mpm_*.conf \
- && a2enmod mpm_prefork
-
-# Extensions PHP nécessaires
+# -------------------------
+# Installer les extensions PHP nécessaires
+# -------------------------
 RUN apt-get update && apt-get install -y \
     libpq-dev \
     unzip \
     git \
- && docker-php-ext-install pdo pdo_pgsql
+ && docker-php-ext-install pdo pdo_pgsql \
+ && apt-get clean \
+ && rm -rf /var/lib/apt/lists/*
 
-# Copier projet
+# -------------------------
+# Copier le projet Symfony
+# -------------------------
 WORKDIR /var/www/html
 COPY . .
 
-# Composer
+# -------------------------
+# Installer Composer
+# -------------------------
 COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
 
-# Installer dépendances (prod)
+# -------------------------
+# Installer les dépendances Symfony en prod
+# -------------------------
 RUN composer install --no-dev --optimize-autoloader
 
-# Permissions
+# -------------------------
+# Permissions pour Apache
+# -------------------------
 RUN chown -R www-data:www-data var vendor
 
+# -------------------------
 # Exposer le port Apache
+# -------------------------
 EXPOSE 80
 
-# Lancer Apache
+# -------------------------
+# Lancer Apache (commande standard)
+# -------------------------
 CMD ["apache2-foreground"]
