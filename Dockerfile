@@ -1,35 +1,28 @@
-# Base image PHP + Apache
+# Image PHP + Apache
 FROM php:8.2-apache
 
-# Installer les extensions nécessaires pour PostgreSQL
+# Définir le dossier public Symfony AVANT Apache
+ENV APACHE_DOCUMENT_ROOT /var/www/html/public
+
+RUN sed -ri -e 's!/var/www/html!${APACHE_DOCUMENT_ROOT}!g' /etc/apache2/sites-available/*.conf \
+ && sed -ri -e 's!/var/www/!${APACHE_DOCUMENT_ROOT}!g' /etc/apache2/apache2.conf /etc/apache2/conf-available/*.conf
+
+# Installer les extensions PostgreSQL
 RUN apt-get update && apt-get install -y \
     libpq-dev \
     unzip \
     git \
     && docker-php-ext-install pdo pdo_pgsql
 
-# Copier le projet dans le container
-COPY . /var/www/html
-
-# Définir le répertoire de travail
+# Copier le projet
 WORKDIR /var/www/html
+COPY . .
 
 # Installer Composer
 COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
 
-# Installer les dépendances PHP
+# Installer les dépendances Symfony
 RUN composer install --no-dev --optimize-autoloader
 
-# Donner les droits sur var et vendor
-RUN chown -R www-data:www-data /var/www/html/var /var/www/html/vendor
-
-# Exposer le port 80
-EXPOSE 80
-
-# Lancer Apache
-CMD ["apache2-foreground"]
-# Set Apache document root to Symfony public directory
-ENV APACHE_DOCUMENT_ROOT /var/www/html/public
-
-RUN sed -ri -e 's!/var/www/html!${APACHE_DOCUMENT_ROOT}!g' /etc/apache2/sites-available/*.conf \
-    && sed -ri -e 's!/var/www/!${APACHE_DOCUMENT_ROOT}!g' /etc/apache2/apache2.conf /etc/apache2/conf-available/*.conf
+# Permissions
+RUN chown -R www-data:www-data var vendor
