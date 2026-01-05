@@ -23,8 +23,10 @@ COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
 # 🚨 IMPORTANT : désactiver scripts auto
 RUN composer install --no-dev --optimize-autoloader --no-scripts
 
-# Permissions
-RUN chown -R www-data:www-data var vendor
+# Créer var si absent + permissions
+RUN mkdir -p var \
+ && chown -R www-data:www-data var vendor
+
 
 EXPOSE 80
 CMD ["apache2-foreground"]
