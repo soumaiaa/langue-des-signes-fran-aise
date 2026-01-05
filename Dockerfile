@@ -1,4 +1,5 @@
 FROM php:8.2-apache
+ARG CACHE_BUST=1
 
 # 🔴 FIX MPM OBLIGATOIRE
 RUN a2dismod mpm_event mpm_worker || true \
